@@ -8,11 +8,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-// sql文を発行し、リストに詰める為のRowMapperを用意するクラス。
+// Daoの実装クラス。
+// sql文を発行し、リストに詰める為のRowMapperを用意する。
 public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
 
-  // dbから得たデータを、RowMapperを用いてリストに格納し、戻す。
+  // dbから得たデータを、RowMapperを用いてリストに格納し、返す。
+  // 例外が発生した場合は、元のメソッドに例外処理を移譲する。
   public List<Home> findAll() throws DataAccessException {
+    
+    // sql文の結果を、RowMapperオブジェクトの形で返す。
     RowMapper<Home> rowMapper = new HomeRowMapper();
     return getJdbcTemplate().query(
         "select * from books inner join users on owner_user_id = user_id inner join lendings on books.book_id = lendings.book_id;",
@@ -28,7 +32,7 @@ public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
       return bookList;
     }
 
-    // dbから得たデータをそれぞれ格納した、Home型インスタンスを戻す。
+    // dbから得たデータ(ResultSet型)を、Home型インスタンスにそれぞれ格納し、返す。
     public Home mapRow(ResultSet rs, int rowNum) throws SQLException {
       Home home = new Home();
       home.setBookId(rs.getInt("book_id"));

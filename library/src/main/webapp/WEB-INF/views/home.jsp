@@ -12,7 +12,7 @@
 </head>
 <body>
 	<h1>貸出図書一覧</h1>
-	<!-- 貸出図書一覧を表示する -->
+	<!-- 貸出図書一覧を表示する。 -->
 	<table border="1">
 		<tr>
 			<td>No.</td>
@@ -27,6 +27,7 @@
 		<!-- HomeControllerより、booksのlistを受け取り、それぞれタイトルを表示する。 -->
 		<c:forEach var="list" items="${books}">
 			<tr>
+			    <!-- Homeクラスの、getterメソッドがそれぞれ実行される。 -->
 				<td><c:out value="${list.bookId}" /></td>
 				<td><c:out value="${list.bookTitle}" /></td>
 				<td>
@@ -37,6 +38,7 @@
 				<td><c:out value="${list.lendedAt}" /></td>
 				<td><c:out value="${list.dueDate}" /></td>
 				<td><c:out value="${list.userName}" /></td>
+				<!-- 本の詳細画面と、貸出画面へのリンク。 -->
 				<td><a href="">詳細</a></td>
 				<td><a href="">貸出</a></td>
 			</tr>
