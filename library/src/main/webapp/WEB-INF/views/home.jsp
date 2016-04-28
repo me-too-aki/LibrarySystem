@@ -27,16 +27,16 @@
 		<!-- HomeControllerより、booksのlistを受け取り、それぞれタイトルを表示する。 -->
 		<c:forEach var="list" items="${books}">
 			<tr>
-				<td><c:out value="${list.book_id}" /></td>
-				<td><c:out value="${list.book_title}" /></td>
+				<td><c:out value="${list.bookId}" /></td>
+				<td><c:out value="${list.bookTitle}" /></td>
 				<td>
 					<!-- 貸出状況テーブルに対し、プロパティより対応するキーの値を取得して表示する。 -->
 					<fmt:setBundle basename="application" var="sts" />
-					<fmt:message bundle="${sts}" key="${list.lending_status}" />
+					<fmt:message bundle="${sts}" key="${list.lendingStatus}" />
 				</td>
-				<td><c:out value="${list.lended_at}" /></td>
-				<td><c:out value="${list.due_date}" /></td>
-				<td><c:out value="${list.user_name}" /></td>
+				<td><c:out value="${list.lendedAt}" /></td>
+				<td><c:out value="${list.dueDate}" /></td>
+				<td><c:out value="${list.userName}" /></td>
 				<td><a href="">詳細</a></td>
 				<td><a href="">貸出</a></td>
 			</tr>

@@ -31,12 +31,12 @@ public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
     // dbから得たデータをそれぞれ格納した、Home型インスタンスを戻す。
     public Home mapRow(ResultSet rs, int rowNum) throws SQLException {
       Home home = new Home();
-      home.setBook_id(rs.getInt("book_id"));
-      home.setBook_title(rs.getString("book_title"));
-      home.setLending_status(rs.getBoolean("lending_status"));
-      home.setLended_at(rs.getTimestamp("lended_at"));
-      home.setDue_date(rs.getDate("due_date"));
-      home.setUser_name(rs.getString("user_id"));
+      home.setBookId(rs.getInt("book_id"));
+      home.setBookTitle(rs.getString("book_title"));
+      home.setLendingStatus(rs.getBoolean("lending_status"));
+      home.setLendedAt(rs.getTimestamp("lended_at"));
+      home.setDueDate(rs.getDate("due_date"));
+      home.setUserName(rs.getString("user_id"));
       return home;
     }
   }

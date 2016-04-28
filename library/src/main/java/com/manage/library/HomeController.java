@@ -21,8 +21,8 @@ public class HomeController {
   public String home(Locale locale, Model model) {
 
     // db‚©‚ç“¾‚½ƒf[ƒ^‚ğListŒ^•Ï”‚ÉŠi”[‚µA‚»‚Ìhome_list‚ğmodel‚ÉŠi”[‚·‚éB
-    List<Home> home_list = homeDao.findAll();
-    model.addAttribute("books", home_list);
+    List<Home> homeList = homeDao.findAll();
+    model.addAttribute("books", homeList);
 
     // view–¼‚ğ•Ô‹p‚·‚éB
     // web.xml‚Ìyvalue="/WEB-INF/views/z‚É‚æ‚èA
