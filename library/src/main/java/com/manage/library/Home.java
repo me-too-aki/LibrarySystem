@@ -13,16 +13,6 @@ public class Home {
   private Date dueDate;
   private String userName;
 
-  public Home(int bookId, String bookTitle, boolean lendingStatus, Timestamp lendedAt, Date dueDate,
-      String userName) {
-    this.bookId = bookId;
-    this.bookTitle = bookTitle;
-    this.lendingStatus = lendingStatus;
-    this.lendedAt = lendedAt;
-    this.dueDate = dueDate;
-    this.userName = userName;
-  }
-
   public Home() {
   }
 
