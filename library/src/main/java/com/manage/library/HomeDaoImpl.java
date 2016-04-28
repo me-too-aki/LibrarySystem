@@ -17,13 +17,13 @@ public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
   public List<Home> findAll() throws DataAccessException {
     
     // sql文の結果を、RowMapperオブジェクトの形で返す。
-    RowMapper<Home> rowMapper = new HomeRowMapper();
+    RowMapper<Home> rowMapper = new HomeListRowMapper();
     return getJdbcTemplate().query(
         "select * from books inner join users on owner_user_id = user_id inner join lendings on books.book_id = lendings.book_id;",
         rowMapper);
   }
 
-  protected class HomeRowMapper implements RowMapper<Home> {
+  protected class HomeListRowMapper implements RowMapper<Home> {
 
     private List<Home> bookList = new ArrayList<Home>();
 
@@ -34,14 +34,14 @@ public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
 
     // dbから得たデータ(ResultSet型)を、Home型インスタンスにそれぞれ格納し、返す。
     public Home mapRow(ResultSet rs, int rowNum) throws SQLException {
-      Home home = new Home();
-      home.setBookId(rs.getInt("book_id"));
-      home.setBookTitle(rs.getString("book_title"));
-      home.setLendingStatus(rs.getBoolean("lending_status"));
-      home.setLendedAt(rs.getTimestamp("lended_at"));
-      home.setDueDate(rs.getDate("due_date"));
-      home.setUserName(rs.getString("user_id"));
-      return home;
+      Home homeObj = new Home();
+      homeObj.setBookId(rs.getInt("book_id"));
+      homeObj.setBookTitle(rs.getString("book_title"));
+      homeObj.setLendingStatus(rs.getBoolean("lending_status"));
+      homeObj.setLendedAt(rs.getTimestamp("lended_at"));
+      homeObj.setDueDate(rs.getDate("due_date"));
+      homeObj.setUserName(rs.getString("user_id"));
+      return homeObj;
     }
   }
 }
