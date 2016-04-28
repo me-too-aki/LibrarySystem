@@ -4,6 +4,7 @@
 <%@ page session="false"%>
 <%@ page language="java" import="java.lang.*, java.util.*"
 	contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html>
 <head>
@@ -29,9 +30,9 @@
 				<td><c:out value="${list.book_id}" /></td>
 				<td><c:out value="${list.book_title}" /></td>
 				<td>
-					<!-- 貸出状況テーブルに対し、プロパティより対応するキーの値を取得して表示する。 --> <fmt:setBundle
-						basename="application" var="sts" /> <fmt:message bundle="${sts}"
-						key="${list.lending_status}" />
+					<!-- 貸出状況テーブルに対し、プロパティより対応するキーの値を取得して表示する。 -->
+					<fmt:setBundle basename="application" var="sts" />
+					<fmt:message bundle="${sts}" key="${list.lending_status}" />
 				</td>
 				<td><c:out value="${list.lended_at}" /></td>
 				<td><c:out value="${list.due_date}" /></td>
