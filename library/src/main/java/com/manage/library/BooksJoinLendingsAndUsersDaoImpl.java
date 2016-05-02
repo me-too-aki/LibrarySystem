@@ -32,7 +32,7 @@ public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements 
       return bookList;
     }
 
-    // dbから得たデータ(ResultSet型)を、Home型インスタンスにそれぞれ格納し、返す。
+    // dbから得たデータ(ResultSet型)を、BooksJoinLendingsAndUsers型インスタンスにそれぞれ格納し、返す。
     public BooksJoinLendingsAndUsers mapRow(ResultSet rs, int rowNum) throws SQLException {
       BooksJoinLendingsAndUsers viewObj = new BooksJoinLendingsAndUsers();
       viewObj.setBookId(rs.getInt("book_id"));

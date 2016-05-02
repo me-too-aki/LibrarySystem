@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-  //dbからデータを得るhomeDaoを用意する。
+  //dbからデータを得るbooksJoinLendingsAndUsersDaoViewを用意する。
   @Autowired
   private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView;
 

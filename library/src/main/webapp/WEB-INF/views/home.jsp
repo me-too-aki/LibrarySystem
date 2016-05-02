@@ -27,7 +27,7 @@
 		<%-- HomeControllerより、booksのlistを受け取り、それぞれタイトルを表示する。 --%>
 		<c:forEach var="list" items="${books}">
 			<tr>
-			    <%-- Homeクラスの、getterメソッドがそれぞれ実行される。 --%>
+			    <%-- BooksJoinLendingsAndUsersクラスの、getterメソッドがそれぞれ実行される。 --%>
 				<td><c:out value="${list.bookId}" /></td>
 				<td><c:out value="${list.bookTitle}" /></td>
 				<td>
