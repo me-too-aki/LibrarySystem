@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>書籍一覧</title>
+<title>貸出図書一覧</title>
 </head>
 <body>
 	<h1>貸出図書一覧</h1>
@@ -39,7 +39,7 @@
 				<td><c:out value="${list.dueDate}" /></td>
 				<td><c:out value="${list.userName}" /></td>
 				<%-- 本の詳細画面と、貸出画面へのリンク。 --%>
-				<td><a href="">詳細</a></td>
+				<td><a href="bookDetail/${list.bookId}">詳細</a></td>
 				<td><a href="">貸出</a></td>
 			</tr>
 		</c:forEach>
