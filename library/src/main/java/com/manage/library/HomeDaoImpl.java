@@ -19,7 +19,7 @@ public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
     // sql文の結果を、RowMapperオブジェクトの形で返す。
     RowMapper<Home> rowMapper = new HomeListRowMapper();
     return getJdbcTemplate().query(
-        "select * from books inner join users on owner_user_id = user_id inner join lendings on books.book_id = lendings.book_id;",
+        "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id;",
         rowMapper);
   }
 
