@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 // Daoの実装クラス。
 // sql文を発行し、リストに詰める為のRowMapperを用意する。
-public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
+public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements BooksJoinLendingsAndUsersDao {
 
   // dbから得たデータを、RowMapperを用いてリストに格納し、返す。
   // 例外が発生した場合は、元のメソッドに例外処理を移譲する。

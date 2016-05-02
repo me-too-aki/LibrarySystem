@@ -14,14 +14,14 @@ public class HomeController {
 
   //dbからデータを得るhomeDaoを用意する。
   @Autowired
-  private HomeDao homeDao;
+  private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView;
 
   // Viewに渡したいオブジェクトを、アノテーションで設定する。
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(Locale locale, Model model) {
 
     // dbから得たデータをList型変数に格納し、そのhome_listをmodelに格納する。
-    List<Home> homeList = homeDao.findAll();
+    List<Home> homeList = booksJoinLendingsAndUsersDaoView.findAll();
     model.addAttribute("books", homeList);
 
     // view名を返却する。
