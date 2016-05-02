@@ -32,8 +32,8 @@
 				<td><c:out value="${list.bookTitle}" /></td>
 				<td>
 					<%-- 貸出状況テーブルに対し、プロパティより対応するキーの値を取得して表示する。 --%>
-					<fmt:setBundle basename="bookStatus" var="sts" />
-					<fmt:message bundle="${sts}" key="books.${list.lendingStatus}" />
+					<fmt:setBundle basename="code" var="sts" />
+					<fmt:message bundle="${sts}" key="lendingStatus.${list.lendingStatus}" />
 				</td>
 				<td><c:out value="${list.lendedAt}" /></td>
 				<td><c:out value="${list.dueDate}" /></td>
