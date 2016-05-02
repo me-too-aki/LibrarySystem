@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+﻿-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: library
 -- ------------------------------------------------------
@@ -55,7 +55,7 @@ CREATE TABLE `lended_historys` (
   `book_id` int(11) NOT NULL COMMENT '本のID',
   `borrow_user_id` int(11) NOT NULL COMMENT '本の借入者のユーザID',
   `lended_at` datetime NOT NULL COMMENT '貸出日時',
-  `return_date` datetime DEFAULT NULL COMMENT '返却日時',
+  `returned_at` datetime DEFAULT NULL COMMENT '返却日時',
   PRIMARY KEY (`history_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='貸出履歴';
 /*!40101 SET character_set_client = @saved_cs_client */;
