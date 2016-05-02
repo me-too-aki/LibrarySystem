@@ -40,7 +40,7 @@ public class HomeDaoImpl extends JdbcDaoSupport implements HomeDao {
       homeObj.setLendingStatus(rs.getBoolean("lending_status"));
       homeObj.setLendedAt(rs.getTimestamp("lended_at"));
       homeObj.setDueDate(rs.getDate("due_date"));
-      homeObj.setUserName(rs.getString("user_id"));
+      homeObj.setUserName(rs.getString("user_name"));
       return homeObj;
     }
   }
