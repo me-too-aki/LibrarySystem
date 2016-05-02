@@ -18,7 +18,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>${jdbc.password}</value>
 		</property>
 	</bean>
-	<bean id="homeDao" class="com.manage.library.BooksJoinLendingsAndUsersDaoImpl">
+	<bean id="BooksJoinLendingsAndUsersDao" class="com.manage.library.BooksJoinLendingsAndUsersDaoImpl">
 		<property name="dataSource" ref="mydataSource"></property>
 	</bean>
 </beans>
