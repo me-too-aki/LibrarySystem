@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>貸出図書システム　書籍一覧</title>
+<title>書籍一覧</title>
 </head>
 <body>
 	<h1>貸出図書一覧</h1>
