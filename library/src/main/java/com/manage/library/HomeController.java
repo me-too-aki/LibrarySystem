@@ -21,7 +21,7 @@ public class HomeController {
   public String home(Locale locale, Model model) {
 
     // db‚©‚ç“¾‚½ƒf[ƒ^‚ğListŒ^•Ï”‚ÉŠi”[‚µA‚»‚Ìhome_list‚ğmodel‚ÉŠi”[‚·‚éB
-    List<Home> homeList = booksJoinLendingsAndUsersDaoView.findAll();
+    List<BooksJoinLendingsAndUsers> homeList = booksJoinLendingsAndUsersDaoView.findAll();
     model.addAttribute("books", homeList);
 
     // view–¼‚ğ•Ô‹p‚·‚éB

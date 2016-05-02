@@ -4,5 +4,5 @@ import java.util.List;
 
 // 一覧画面に表示するリストを得るDaoのインターフェイス。
 public interface BooksJoinLendingsAndUsersDao {
-  List<Home> findAll();
+  List<BooksJoinLendingsAndUsers> findAll();
 }

@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.sql.Date;
 
 // 一覧画面で取得する値を用意し、getterとsetterを用意するクラス。
-public class Home {
+public class BooksJoinLendingsAndUsers {
 
   //一覧画面に表示する項目。
   private int bookId;                //本のID。
@@ -14,7 +14,7 @@ public class Home {
   private Date dueDate;              //本の返却予定日。
   private String userName;           //本の借入者名。
 
-  public Home() {
+  public BooksJoinLendingsAndUsers() {
   }
   
   //jspファイル側で値を取得する為に、getterメソッドを実装する。

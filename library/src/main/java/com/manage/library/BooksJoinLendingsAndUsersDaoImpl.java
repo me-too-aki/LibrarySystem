@@ -14,34 +14,34 @@ public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements 
 
   // dbから得たデータを、RowMapperを用いてリストに格納し、返す。
   // 例外が発生した場合は、元のメソッドに例外処理を移譲する。
-  public List<Home> findAll() throws DataAccessException {
+  public List<BooksJoinLendingsAndUsers> findAll() throws DataAccessException {
     
     // sql文の結果を、RowMapperオブジェクトの形で返す。
-    RowMapper<Home> rowMapper = new HomeListRowMapper();
+    RowMapper<BooksJoinLendingsAndUsers> rowMapper = new HomeListRowMapper();
     return getJdbcTemplate().query(
         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id;",
         rowMapper);
   }
 
-  protected class HomeListRowMapper implements RowMapper<Home> {
+  protected class HomeListRowMapper implements RowMapper<BooksJoinLendingsAndUsers> {
 
-    private List<Home> bookList = new ArrayList<Home>();
+    private List<BooksJoinLendingsAndUsers> bookList = new ArrayList<BooksJoinLendingsAndUsers>();
 
     // 戻り値としてリスト型で結果を返す。
-    public List<Home> getResults() {
+    public List<BooksJoinLendingsAndUsers> getResults() {
       return bookList;
     }
 
     // dbから得たデータ(ResultSet型)を、Home型インスタンスにそれぞれ格納し、返す。
-    public Home mapRow(ResultSet rs, int rowNum) throws SQLException {
-      Home homeObj = new Home();
-      homeObj.setBookId(rs.getInt("book_id"));
-      homeObj.setBookTitle(rs.getString("book_title"));
-      homeObj.setLendingStatus(rs.getBoolean("lending_status"));
-      homeObj.setLendedAt(rs.getTimestamp("lended_at"));
-      homeObj.setDueDate(rs.getDate("due_date"));
-      homeObj.setUserName(rs.getString("user_name"));
-      return homeObj;
+    public BooksJoinLendingsAndUsers mapRow(ResultSet rs, int rowNum) throws SQLException {
+      BooksJoinLendingsAndUsers viewObj = new BooksJoinLendingsAndUsers();
+      viewObj.setBookId(rs.getInt("book_id"));
+      viewObj.setBookTitle(rs.getString("book_title"));
+      viewObj.setLendingStatus(rs.getBoolean("lending_status"));
+      viewObj.setLendedAt(rs.getTimestamp("lended_at"));
+      viewObj.setDueDate(rs.getDate("due_date"));
+      viewObj.setUserName(rs.getString("user_name"));
+      return viewObj;
     }
   }
 }
