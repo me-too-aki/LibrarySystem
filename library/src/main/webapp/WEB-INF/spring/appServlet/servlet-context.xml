@@ -35,6 +35,14 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
+	<beans:bean id="bookStatusProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<beans:property name="locations">
+			<beans:list>
+				<beans:value>classpath:bookStatus.properties</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
 	<beans:bean id="placeHolderConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<beans:property name="location" value="classpath:application.properties" />
