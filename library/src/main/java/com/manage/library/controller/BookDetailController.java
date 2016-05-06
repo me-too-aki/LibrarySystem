@@ -28,8 +28,8 @@ public class BookDetailController {
 	public String bookDetail(@PathVariable("bookId") int id, Locale locale, Model model) {
 		
 		// Viewに渡すテーブルデータを用意する。
-		List<BooksJoinLendingsAndUsers> booksJoinLendingsAndUsersList = booksJoinLendingsAndUsersDaoView.findFromId(id);
-		model.addAttribute("booksJoinLendingsAndUsers", booksJoinLendingsAndUsersList);
+		List<BooksJoinLendingsAndUsers> booksJoinLendingsAndUsersRecord = booksJoinLendingsAndUsersDaoView.findFromId(id);
+		model.addAttribute("booksJoinLendingsAndUsers", booksJoinLendingsAndUsersRecord);
 		
 		List<LendedHistorysJoinUsers> historysJoinUsersList = lendedHistorysDaoView.findFromId(id);
 		model.addAttribute("historysJoinUsers", historysJoinUsersList);
