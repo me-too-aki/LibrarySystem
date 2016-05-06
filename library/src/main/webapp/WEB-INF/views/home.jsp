@@ -28,18 +28,18 @@
 		<c:forEach var="list" items="${books}">
 			<tr>
 			    <%-- BooksJoinLendingsAndUsersクラスの、getterメソッドがそれぞれ実行される。 --%>
-				<td><c:out value="${list.bookId}" /></td>
-				<td><c:out value="${list.bookTitle}" /></td>
+				<td><c:out value="${list.books.bookId}" /></td>
+				<td><c:out value="${list.books.bookTitle}" /></td>
 				<td>
 					<%-- 貸出状況テーブルに対し、プロパティより対応するキーの値を取得して表示する。 --%>
 					<fmt:setBundle basename="code" var="sts" />
-					<fmt:message bundle="${sts}" key="lendingStatus.${list.lendingStatus}" />
+					<fmt:message bundle="${sts}" key="lendingStatus.${list.lendings.lendingStatus}" />
 				</td>
-				<td><c:out value="${list.lendedAt}" /></td>
-				<td><c:out value="${list.dueDate}" /></td>
-				<td><c:out value="${list.userName}" /></td>
+				<td><c:out value="${list.lendings.lendedAt}" /></td>
+				<td><c:out value="${list.lendings.dueDate}" /></td>
+				<td><c:out value="${list.users.userName}" /></td>
 				<%-- 本の詳細画面と、貸出画面へのリンク。 --%>
-				<td><a href="bookDetail/${list.bookId}">詳細</a></td>
+				<td><a href="bookDetail/${list.books.bookId}">詳細</a></td>
 				<td><a href="">貸出</a></td>
 			</tr>
 		</c:forEach>

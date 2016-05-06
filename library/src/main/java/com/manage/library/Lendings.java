@@ -13,7 +13,7 @@ public class Lendings {
 	private int borrowUserId; // 本の借入者のID。
 
 	// jspファイル側で値を取得する為に、getterメソッドを実装する。
-	public int getId() {
+	public int getBookId() {
 		return this.bookId;
 	}
 

@@ -18,23 +18,23 @@
 		<c:forEach var="list" items="${booksJoinLendingsAndUsers}">
 			<tr>
 				<td>タイトル</td>
-				<td><c:out value="${list.bookTitle}" /></td>
+				<td><c:out value="${list.books.bookTitle}" /></td>
 			</tr>
 			<tr>
 				<td>著者</td>
-				<td><c:out value="${list.writterName}" /></td>
+				<td><c:out value="${list.books.writterName}" /></td>
 			</tr>
 			<tr>
 				<td>出版社</td>
-				<td><c:out value="${list.publisher}" /></td>
+				<td><c:out value="${list.books.publisher}" /></td>
 			</tr>
 			<tr>
 				<td>出版日</td>
-				<td><c:out value="${list.publishedAt}" /></td>
+				<td><c:out value="${list.books.publishedAt}" /></td>
 			</tr>
 			<tr>
 				<td>所有者</td>
-				<td><c:out value="${list.userName}" /></td>
+				<td><c:out value="${list.users.userName}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -50,9 +50,9 @@
 		<c:forEach var="list" items="${historysJoinUsers}">
 			<tr>
 				<%-- getterメソッドがそれぞれ実行される。 --%>
-				<td><c:out value="${list.lendedAt}" /></td>
-				<td><c:out value="${list.returnedAt}" /></td>
-				<td><c:out value="${list.userName}" /></td>
+				<td><c:out value="${list.lendedHistorys.lendedAt}" /></td>
+				<td><c:out value="${list.lendedHistorys.returnedAt}" /></td>
+				<td><c:out value="${list.users.userName}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
