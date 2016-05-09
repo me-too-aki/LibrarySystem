@@ -7,5 +7,5 @@ import com.manage.library.Users;
 public interface UsersDao {
 	List<Users> findAll();
 
-	List<Users> findFromId(int id);
+	String findUserNameFromUserId(int userId);
 }

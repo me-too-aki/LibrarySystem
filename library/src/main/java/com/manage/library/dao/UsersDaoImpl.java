@@ -23,10 +23,10 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
 		return getJdbcTemplate().query("select * from users;", rowMapper);
 	}
 
-	// テーブルから、対応するデータを拾ってくるメソッド
-	public List<Users> findFromId(int id) {
-		RowMapper<Users> rowMapper = new UsersListRowMapper();
-		return getJdbcTemplate().query("select * from users where user_id=" + id + ";", rowMapper);
+	
+	public String findUserNameFromUserId(int userId) {
+	  return getJdbcTemplate().queryForObject("select user_name from users where user_id=" + userId + ";",
+        String.class);
 	}
 
 	protected class UsersListRowMapper implements RowMapper<Users> {
