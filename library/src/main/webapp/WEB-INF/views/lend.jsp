@@ -42,7 +42,7 @@
 				<%-- LendControllerよりlistを受け取り、プルダウンでそれぞれ表示する。 --%>
 				<td><select name="userName">
 						<c:forEach var="list" items="${users}">
-							<option><c:out value="${list.userName}" />
+							<option value="${list.userId}"><c:out value="${list.userName}" />
 						</c:forEach>
 				</select></td>
 			</tr>
