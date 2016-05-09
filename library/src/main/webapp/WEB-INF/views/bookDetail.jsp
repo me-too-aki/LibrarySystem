@@ -4,7 +4,6 @@
 <%@ page session="false"%>
 <%@ page language="java" import="java.lang.*, java.util.*"
 	contentType="text/html; charset=utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html>
 <head>
@@ -15,28 +14,26 @@
 	<%-- 貸出図書詳細画面を表示する。 --%>
 	<table border="1">
 		<%-- BookDetailControllerよりlistを受け取り、それぞれ表示する。 --%>
-		<c:forEach var="list" items="${booksJoinLendingsAndUsers}">
-			<tr>
-				<td>タイトル</td>
-				<td><c:out value="${list.books.bookTitle}" /></td>
-			</tr>
-			<tr>
-				<td>著者</td>
-				<td><c:out value="${list.books.writterName}" /></td>
-			</tr>
-			<tr>
-				<td>出版社</td>
-				<td><c:out value="${list.books.publisher}" /></td>
-			</tr>
-			<tr>
-				<td>出版日</td>
-				<td><c:out value="${list.books.publishedAt}" /></td>
-			</tr>
-			<tr>
-				<td>所有者</td>
-				<td><c:out value="${list.users.userName}" /></td>
-			</tr>
-		</c:forEach>
+		<tr>
+			<td>タイトル</td>
+			<td><c:out value="${bookRecord.bookTitle}" /></td>
+		</tr>
+		<tr>
+			<td>著者</td>
+			<td><c:out value="${bookRecord.writterName}" /></td>
+		</tr>
+		<tr>
+			<td>出版社</td>
+			<td><c:out value="${bookRecord.publisher}" /></td>
+		</tr>
+		<tr>
+			<td>出版日</td>
+			<td><c:out value="${bookRecord.publishedAt}" /></td>
+		</tr>
+		<tr>
+			<td>所有者</td>
+			<td><c:out value="${userName}" /></td>
+		</tr>
 	</table>
 	<br>
 	<p>貸出履歴</p>
