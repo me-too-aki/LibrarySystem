@@ -36,6 +36,9 @@ public class LendController {
 
     List<Users> UsersList = usersDaoView.findAll();
     model.addAttribute("users", UsersList);
+    
+    String ownerUserName = usersDaoView.findUserNameFromUserId(lendBookDetailRecord.getOwnerUserId());
+    model.addAttribute("ownerUserName", ownerUserName);
 
     // 貸出画面に表示する為、現在の日付(貸出日)と7日後の日付(返却予定日のデフォルト値)を取得する。
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

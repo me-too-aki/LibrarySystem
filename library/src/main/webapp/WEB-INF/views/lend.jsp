@@ -14,16 +14,23 @@
 	<table border="1">
 		<tr>
 			<td>タイトル</td>
-			<td>著者</td>
-			<td>出版社</td>
-			<td>出版日</td>
+			<td><c:out value="${lendBookDetails.bookTitle}" /></td>
 		</tr>
 		<tr>
-			<%-- LendControllerよりlistを受け取り、それぞれ表示する。 --%>
-			<td><c:out value="${lendBookDetails.bookTitle}" /></td>
+			<td>著者</td>
 			<td><c:out value="${lendBookDetails.writterName}" /></td>
+		</tr>
+		<tr>
+			<td>出版社</td>
 			<td><c:out value="${lendBookDetails.publisher}" /></td>
+		</tr>
+		<tr>
+			<td>出版日</td>
 			<td><c:out value="${lendBookDetails.publishedAt}" /></td>
+		</tr>
+		<tr>
+			<td>所有者</td>
+			<td><c:out value="${ownerUserName}" /></td>
 		</tr>
 	</table>
 	<br>
