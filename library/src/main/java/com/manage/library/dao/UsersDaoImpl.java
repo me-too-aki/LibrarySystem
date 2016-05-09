@@ -25,8 +25,12 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
 
 	
 	public String findUserNameFromUserId(int userId) {
+	  if( userId != 0){
 	  return getJdbcTemplate().queryForObject("select user_name from users where user_id=" + userId + ";",
         String.class);
+	  }else{
+	    return "";
+	  }
 	}
 
 	protected class UsersListRowMapper implements RowMapper<Users> {
