@@ -49,8 +49,7 @@
 			<tr>
 				<%-- LendControllerより現在の日付と7日後の日付を取得し、表示する。 --%>
 				<td>貸出日</td>
-				<td><input type="date" name="lendDate" value="${lendDate}"
-					readonly><br></td>
+				<td><c:out value="${lendDate}" /><br></td>
 			</tr>
 			<tr>
 				<td>返却日</td>
