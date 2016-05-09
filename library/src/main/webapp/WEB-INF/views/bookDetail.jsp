@@ -32,7 +32,7 @@
 		</tr>
 		<tr>
 			<td>所有者</td>
-			<td><c:out value="${userName}" /></td>
+			<td><c:out value="${ownerUserName}" /></td>
 		</tr>
 	</table>
 	<br>

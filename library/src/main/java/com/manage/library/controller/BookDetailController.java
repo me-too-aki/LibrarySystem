@@ -37,8 +37,8 @@ public class BookDetailController {
     List<Books> booksRecord = booksDaoView.findFromBookId(id);
     model.addAttribute("bookRecord", booksRecord.get(0));
 
-    String userName = usersDaoView.findUserNameFromUserId(booksRecord.get(0).getOwnerUserId());
-    model.addAttribute("userName", userName);
+    String ownerUserName = usersDaoView.findUserNameFromUserId(booksRecord.get(0).getOwnerUserId());
+    model.addAttribute("ownerUserName", ownerUserName);
 
     // viewñºÇï‘ãpÇ∑ÇÈÅB
     // web.xmlÇÃÅyvalue="/WEB-INF/views/ÅzÇ…ÇÊÇËÅA
