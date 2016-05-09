@@ -7,5 +7,5 @@ import com.manage.library.Books;
 public interface BooksDao {
   List<Books> findAll();
 
-  List<Books> findFromBookId(int bookId);
+  Books findFromBookId(int bookId);
 }

@@ -24,10 +24,10 @@ public class BooksDaoImpl extends JdbcDaoSupport implements BooksDao {
   }
 
   // テーブルから、対応するデータを拾ってくるメソッド
-  public List<Books> findFromBookId(int id) {
+  public Books findFromBookId(int id) {
     // TODO 自動生成されたメソッド・スタブ
     RowMapper<Books> rowMapper = new BooksListRowMapper();
-    return getJdbcTemplate().query("select * from books where book_id=" + id + ";", rowMapper);
+    return getJdbcTemplate().queryForObject("select * from books where book_id=" + id + ";", rowMapper);
   }
 
   protected class BooksListRowMapper implements RowMapper<Books> {

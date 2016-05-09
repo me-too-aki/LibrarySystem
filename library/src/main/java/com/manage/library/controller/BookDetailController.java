@@ -34,10 +34,10 @@ public class BookDetailController {
     List<LendedHistorysJoinUsers> historysJoinUsersList = lendedHistorysDaoView.findFromId(id);
     model.addAttribute("historysJoinUsers", historysJoinUsersList);
 
-    List<Books> booksRecord = booksDaoView.findFromBookId(id);
-    model.addAttribute("bookRecord", booksRecord.get(0));
+    Books booksRecord = booksDaoView.findFromBookId(id);
+    model.addAttribute("bookRecord", booksRecord);
 
-    String ownerUserName = usersDaoView.findUserNameFromUserId(booksRecord.get(0).getOwnerUserId());
+    String ownerUserName = usersDaoView.findUserNameFromUserId(booksRecord.getOwnerUserId());
     model.addAttribute("ownerUserName", ownerUserName);
 
     // viewñºÇï‘ãpÇ∑ÇÈÅB
