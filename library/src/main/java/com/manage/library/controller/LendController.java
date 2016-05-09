@@ -32,7 +32,7 @@ public class LendController {
 
     // Viewに渡すテーブルデータを用意する。
     Books lendBookDetailRecord = booksDaoView.findFromBookId(id);
-    model.addAttribute("lendBookDetails", lendBookDetailRecord);
+    model.addAttribute("lendBookDetail", lendBookDetailRecord);
 
     List<Users> UsersList = usersDaoView.findAll();
     model.addAttribute("users", UsersList);
@@ -42,12 +42,12 @@ public class LendController {
 
     // 貸出画面に表示する為、現在の日付(貸出日)と7日後の日付(返却予定日のデフォルト値)を取得する。
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-    Calendar calendar = Calendar.getInstance();
-    Calendar calendarAdd = Calendar.getInstance();
-    calendarAdd.add(Calendar.DAY_OF_MONTH, 7);
+    Calendar lendDate = Calendar.getInstance();
+    Calendar dueDate = Calendar.getInstance();
+    dueDate.add(Calendar.DAY_OF_MONTH, 7);
 
-    model.addAttribute("lendDate", df.format(calendar.getTime()));
-    model.addAttribute("dueDate", df.format(calendarAdd.getTime()));
+    model.addAttribute("lendDate", df.format(lendDate.getTime()));
+    model.addAttribute("dueDate", df.format(dueDate.getTime()));
 
     // view名を返却する。
     // web.xmlの【value="/WEB-INF/views/】により、

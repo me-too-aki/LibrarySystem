@@ -14,19 +14,19 @@
 	<table border="1">
 		<tr>
 			<td>タイトル</td>
-			<td><c:out value="${lendBookDetails.bookTitle}" /></td>
+			<td><c:out value="${lendBookDetail.bookTitle}" /></td>
 		</tr>
 		<tr>
 			<td>著者</td>
-			<td><c:out value="${lendBookDetails.writterName}" /></td>
+			<td><c:out value="${lendBookDetail.writterName}" /></td>
 		</tr>
 		<tr>
 			<td>出版社</td>
-			<td><c:out value="${lendBookDetails.publisher}" /></td>
+			<td><c:out value="${lendBookDetail.publisher}" /></td>
 		</tr>
 		<tr>
 			<td>出版日</td>
-			<td><c:out value="${lendBookDetails.publishedAt}" /></td>
+			<td><c:out value="${lendBookDetail.publishedAt}" /></td>
 		</tr>
 		<tr>
 			<td>所有者</td>
