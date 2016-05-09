@@ -1,4 +1,4 @@
-package com.manage.library;
+package com.manage.library.controller;
 
 import java.util.List;
 import java.util.Locale;
@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.manage.library.BooksJoinLendingsAndUsers;
+import com.manage.library.dao.BooksJoinLendingsAndUsersDao;
 
 // 一覧画面(home)のコントローラ。
 @Controller

@@ -18,7 +18,22 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>${jdbc.password}</value>
 		</property>
 	</bean>
-	<bean id="BooksJoinLendingsAndUsersDao" class="com.manage.library.BooksJoinLendingsAndUsersDaoImpl">
+	<bean id="BooksJoinLendingsAndUsersDao" class="com.manage.library.dao.BooksJoinLendingsAndUsersDaoImpl">
+		<property name="dataSource" ref="mydataSource"></property>
+	</bean>
+	<bean id="LendedHistorysJoinUsersdao" class="com.manage.library.dao.LendedHistorysJoinUsersDaoImpl">
+		<property name="dataSource" ref="mydataSource"></property>
+	</bean>
+	<bean id="BooksDao" class="com.manage.library.dao.BooksDaoImpl">
+		<property name="dataSource" ref="mydataSource"></property>
+	</bean>
+	<bean id="LendingsDao" class="com.manage.library.dao.LendingsDaoImpl">
+		<property name="dataSource" ref="mydataSource"></property>
+	</bean>
+	<bean id="LendedHistorysDao" class="com.manage.library.dao.LendedHistorysDaoImpl">
+		<property name="dataSource" ref="mydataSource"></property>
+	</bean>
+	<bean id="UsersDao" class="com.manage.library.dao.UsersDaoImpl">
 		<property name="dataSource" ref="mydataSource"></property>
 	</bean>
 </beans>
