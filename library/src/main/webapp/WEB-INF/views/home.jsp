@@ -40,7 +40,7 @@
 				<td><c:out value="${list.users.userName}" /></td>
 				<%-- 本の詳細画面と、貸出画面へのリンク。 --%>
 				<td><a href="bookDetail/${list.books.bookId}">詳細</a></td>
-				<td><a href="">貸出</a></td>
+				<td><a href="lend/${list.books.bookId}">貸出</a></td>
 			</tr>
 		</c:forEach>
 	</table>
