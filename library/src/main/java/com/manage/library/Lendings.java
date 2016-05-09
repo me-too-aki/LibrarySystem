@@ -5,53 +5,53 @@ import java.sql.Timestamp;
 
 // 取得する値を用意し、getterとsetterを用意するクラス。
 public class Lendings {
-	
-	private int bookId; // 本のID。
-	private boolean lendingStatus; // 本の貸出状況。
-	private Timestamp lendedAt; // 本の貸出日時。
-	private Date dueDate; // 本の返却予定日。
-	private int borrowUserId; // 本の借入者のID。
 
-	// jspファイル側で値を取得する為に、getterメソッドを実装する。
-	public int getBookId() {
-		return this.bookId;
-	}
+  private int bookId; // 本のID。
+  private boolean lendingStatus; // 本の貸出状況。
+  private Timestamp lendedAt; // 本の貸出日時。
+  private Date dueDate; // 本の返却予定日。
+  private int borrowUserId; // 本の借入者のID。
 
-	public boolean getLendingStatus() {
-		return this.lendingStatus;
-	}
+  // jspファイル側で値を取得する為に、getterメソッドを実装する。
+  public int getBookId() {
+    return this.bookId;
+  }
 
-	public Timestamp getLendedAt() {
-		return this.lendedAt;
-	}
+  public boolean getLendingStatus() {
+    return this.lendingStatus;
+  }
 
-	public Date getDueDate() {
-		return this.dueDate;
-	}
+  public Timestamp getLendedAt() {
+    return this.lendedAt;
+  }
 
-	public int getBorrowUserId() {
-		return this.borrowUserId;
-	}
+  public Date getDueDate() {
+    return this.dueDate;
+  }
 
-	// DaoImplクラスで値を入れる為に、setterメソッドを実装する。
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
-	}
+  public int getBorrowUserId() {
+    return this.borrowUserId;
+  }
 
-	public void setLendingStatus(boolean lendingStatus) {
-		this.lendingStatus = lendingStatus;
-	}
+  // DaoImplクラスで値を入れる為に、setterメソッドを実装する。
+  public void setBookId(int bookId) {
+    this.bookId = bookId;
+  }
 
-	public void setLendedAt(Timestamp lendedAt) {
-		this.lendedAt = lendedAt;
-	}
+  public void setLendingStatus(boolean lendingStatus) {
+    this.lendingStatus = lendingStatus;
+  }
 
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
+  public void setLendedAt(Timestamp lendedAt) {
+    this.lendedAt = lendedAt;
+  }
 
-	public void setBorrowUserId(int borrowUserId) {
-		this.borrowUserId = borrowUserId;
-	}
+  public void setDueDate(Date dueDate) {
+    this.dueDate = dueDate;
+  }
+
+  public void setBorrowUserId(int borrowUserId) {
+    this.borrowUserId = borrowUserId;
+  }
 
 }

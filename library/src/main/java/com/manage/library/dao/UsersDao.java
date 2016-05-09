@@ -5,7 +5,7 @@ import com.manage.library.Users;
 
 // リストを得るDaoのインターフェイス。
 public interface UsersDao {
-	List<Users> findAll();
+  List<Users> findAll();
 
-	String findUserNameFromUserId(int userId);
+  String findUserNameFromUserId(int userId);
 }

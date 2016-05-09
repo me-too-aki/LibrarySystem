@@ -5,7 +5,7 @@ import com.manage.library.LendedHistorysJoinUsers;
 
 // リストを得るDaoのインターフェイス。
 public interface LendedHistorysJoinUsersDao {
-	List<LendedHistorysJoinUsers> findAll();
+  List<LendedHistorysJoinUsers> findAll();
 
-	List<LendedHistorysJoinUsers> findFromId(int id);
+  List<LendedHistorysJoinUsers> findFromId(int id);
 }

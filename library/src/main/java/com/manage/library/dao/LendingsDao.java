@@ -5,7 +5,7 @@ import com.manage.library.Lendings;
 
 // リストを得るDaoのインターフェイス。
 public interface LendingsDao {
-	List<Lendings> findAll();
+  List<Lendings> findAll();
 
-	List<Lendings> findFromId(int id);
+  List<Lendings> findFromId(int id);
 }

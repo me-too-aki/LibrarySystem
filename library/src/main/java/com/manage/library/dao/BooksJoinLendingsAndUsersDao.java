@@ -5,7 +5,7 @@ import com.manage.library.BooksJoinLendingsAndUsers;
 
 // リストを得るDaoのインターフェイス。
 public interface BooksJoinLendingsAndUsersDao {
-	List<BooksJoinLendingsAndUsers> findAll();
+  List<BooksJoinLendingsAndUsers> findAll();
 
-	List<BooksJoinLendingsAndUsers> findFromId(int id);
+  List<BooksJoinLendingsAndUsers> findFromId(int id);
 }
