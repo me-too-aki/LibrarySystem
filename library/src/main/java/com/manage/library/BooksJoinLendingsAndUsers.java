@@ -1,13 +1,11 @@
 package com.manage.library;
 
-// 取得する値を用意し、getterとsetterを用意するクラス。
 public class BooksJoinLendingsAndUsers {
 
-  private Books books;  //本(books)のテーブル
-  private Lendings lendings; //貸出状況(lendings)のテーブル
-  private Users users; //ユーザ(users)のテーブル
+  private Books books;
+  private Lendings lendings;
+  private Users users;
 
-  // jspファイル側で値を取得する為に、getterメソッドを実装する。
   public Books getBooks() {
     return this.books;
   }
@@ -20,7 +18,6 @@ public class BooksJoinLendingsAndUsers {
     return this.users;
   }
 
-  // DaoImplクラスで値を入れる為に、setterメソッドを実装する。
   public void setBooks(Books books) {
     this.books = books;
   }

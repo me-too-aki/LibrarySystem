@@ -2,16 +2,14 @@ package com.manage.library;
 
 import java.sql.Timestamp;
 
-// 取得する値を用意し、getterとsetterを用意するクラス。
 public class LendedHistorys {
 
-  private int historyId; // 貸出履歴のID。
-  private int bookId; // 本のID。
-  private Timestamp lendedAt; // 貸出日時。
-  private Timestamp returnedAt; // 返却日時。
-  private int borrowUserId; // 借入者のユーザID。
+  private int historyId;
+  private int bookId;
+  private Timestamp lendedAt;
+  private Timestamp returnedAt;
+  private int borrowUserId;
 
-  // jspファイル側で値を取得する為に、getterメソッドを実装する。
   public int getHistoryId() {
     return this.historyId;
   }
@@ -32,7 +30,6 @@ public class LendedHistorys {
     return this.borrowUserId;
   }
 
-  // DaoImplクラスで値を入れる為に、setterメソッドを実装する。
   public void setHistoryId(int historyId) {
     this.historyId = historyId;
   }

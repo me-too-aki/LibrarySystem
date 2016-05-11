@@ -11,25 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.manage.library.BooksJoinLendingsAndUsers;
 import com.manage.library.dao.BooksJoinLendingsAndUsersDao;
 
-// 一覧画面(home)のコントローラ。
 @Controller
 public class HomeController {
 
-  //dbからデータを得るbooksJoinLendingsAndUsersDaoViewを用意する。
   @Autowired
   private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView;
 
-  // Viewに渡したいオブジェクトを、アノテーションで設定する。
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(Locale locale, Model model) {
 
-    // dbから得たデータをList型変数に格納し、そのhome_listをmodelに格納する。
     List<BooksJoinLendingsAndUsers> homeList = booksJoinLendingsAndUsersDaoView.findAll();
     model.addAttribute("books", homeList);
 
-    // view名を返却する。
-    // web.xmlの【value="/WEB-INF/views/】により、
-    // WEB-INF/views/home.jspがレンダリングされる。
     return "home";
   }
 }

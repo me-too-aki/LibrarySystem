@@ -3,18 +3,16 @@ package com.manage.library;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-// 取得する値を用意し、getterとsetterを用意するクラス。
 public class Books {
 
-  private int bookId; // 本のID。
-  private String bookTitle; // 本のタイトル。
-  private String writterName; // 本の著者名。
-  private String publisher; // 本の出版社名。
-  private Date publishedAt; // 本の出版日。
-  private int ownerUserId; // 本の所有者名。
-  private Timestamp registeredAt; // 本の登録日時。
+  private int bookId;
+  private String bookTitle;
+  private String writterName;
+  private String publisher;
+  private Date publishedAt;
+  private int ownerUserId;
+  private Timestamp registeredAt;
 
-  // jspファイル側で値を取得する為に、getterメソッドを実装する。
   public int getBookId() {
     return this.bookId;
   }
@@ -43,7 +41,6 @@ public class Books {
     return this.registeredAt;
   }
 
-  // DaoImplクラスで値を入れる為に、setterメソッドを実装する。
   public void setBookId(int bookId) {
     this.bookId = bookId;
   }

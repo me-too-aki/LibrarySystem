@@ -16,21 +16,17 @@ import com.manage.library.Users;
 import com.manage.library.dao.BooksDao;
 import com.manage.library.dao.UsersDao;
 
-// 図書貸出画面のコントローラ。
 @Controller
 public class LendController {
 
-  // dbからデータを得るDaoを用意する。
   @Autowired
   private BooksDao booksDaoView;
   @Autowired
   private UsersDao usersDaoView;
 
-  // Viewに渡したいオブジェクトを、アノテーションで設定する。
   @RequestMapping(value = "lend/{bookId}", method = RequestMethod.GET)
   public String lend(@PathVariable("bookId") int id, Locale locale, Model model) {
 
-    // Viewに渡すテーブルデータを用意する。
     Books lendBookDetailRecord = booksDaoView.findFromBookId(id);
     model.addAttribute("lendBookDetail", lendBookDetailRecord);
 
@@ -40,7 +36,6 @@ public class LendController {
     String ownerUserName = usersDaoView.findUserNameFromUserId(lendBookDetailRecord.getOwnerUserId());
     model.addAttribute("ownerUserName", ownerUserName);
 
-    // 貸出画面に表示する為、現在の日付(貸出日)と7日後の日付(返却予定日のデフォルト値)を取得する。
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     Calendar lendDate = Calendar.getInstance();
     Calendar dueDate = Calendar.getInstance();
@@ -49,9 +44,6 @@ public class LendController {
     model.addAttribute("lendDate", df.format(lendDate.getTime()));
     model.addAttribute("dueDate", df.format(dueDate.getTime()));
 
-    // view名を返却する。
-    // web.xmlの【value="/WEB-INF/views/】により、
-    // WEB-INF/views/lend.jspがレンダリングされる。
     return "lend";
   }
 }

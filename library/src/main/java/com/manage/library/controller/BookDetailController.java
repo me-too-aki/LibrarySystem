@@ -14,11 +14,9 @@ import com.manage.library.dao.BooksDao;
 import com.manage.library.dao.LendedHistorysJoinUsersDao;
 import com.manage.library.dao.UsersDao;
 
-// 貸出図書詳細画面のコントローラ。
 @Controller
 public class BookDetailController {
 
-  // dbからデータを得るDaoをそれぞれ用意する。
   @Autowired
   private LendedHistorysJoinUsersDao lendedHistorysDaoView;
   @Autowired
@@ -26,11 +24,9 @@ public class BookDetailController {
   @Autowired
   private UsersDao usersDaoView;
 
-  // Viewに渡したいオブジェクトを、アノテーションで設定する。
   @RequestMapping(value = "bookDetail/{bookId}", method = RequestMethod.GET)
   public String bookDetail(@PathVariable("bookId") int id, Locale locale, Model model) {
 
-    // Viewに渡すテーブルデータを用意する。
     List<LendedHistorysJoinUsers> historysJoinUsersList = lendedHistorysDaoView.findFromId(id);
     model.addAttribute("historysJoinUsers", historysJoinUsersList);
 
@@ -40,9 +36,6 @@ public class BookDetailController {
     String ownerUserName = usersDaoView.findUserNameFromUserId(booksRecord.getOwnerUserId());
     model.addAttribute("ownerUserName", ownerUserName);
 
-    // view名を返却する。
-    // web.xmlの【value="/WEB-INF/views/】により、
-    // WEB-INF/views/bookDetail.jspがレンダリングされる。
     return "bookDetail";
   }
 }
