@@ -1,7 +1,11 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library.dao;
 
-//必要なライブラリをインポート。
+/**
+ * 必要なライブラリをインポート。
+ */
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,41 +18,69 @@ import com.manage.library.BooksJoinLendingsAndUsers;
 import com.manage.library.Lendings;
 import com.manage.library.Users;
 
-//dbとの実際のやり取りの詳細を記述する、Dao継承クラス。
+/**
+ * dbとの実際のやり取りの詳細を記述する、Dao継承クラス。
+ */
 public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements BooksJoinLendingsAndUsersDao {
 
-  // 継承した抽象メソッドをオーバーライドし、具体的な内容を記述。
+  /**
+   * 結合したテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+   * rowMapperを生成し、sql文の結果を格納してテンプレートで返す。
+   * 
+   * @return getJdbcTemplate().query(
+   *         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id;"
+   *         , rowMapper);
+   */
   public List<BooksJoinLendingsAndUsers> findAll() throws DataAccessException {
 
-    // 結合したテーブルのモデル型でできたrowmapperを生成する。
     RowMapper<BooksJoinLendingsAndUsers> rowMapper = new HomeListRowMapper();
-    // sql文の結果をテンプレートで返す。
     return getJdbcTemplate().query(
         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id;",
         rowMapper);
   }
 
-  // 継承した抽象メソッドをオーバーライドし、具体的な内容を記述。
+  /**
+   * 結合したテーブルから、対応するレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+   * rowMapperを生成し、sql文の結果を格納してテンプレートで返す。
+   * 
+   * @param id
+   * @return getJdbcTemplate().query(
+   *         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id where books.book_id="
+   *         + id + ";", rowMapper);
+   */
   public List<BooksJoinLendingsAndUsers> findFromId(int id) {
-    // 結合したテーブルのモデル型でできたrowmapperを生成する。
     RowMapper<BooksJoinLendingsAndUsers> rowMapper = new HomeListRowMapper();
-    // sql文の結果をテンプレートで返す。
     return getJdbcTemplate().query(
         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id where books.book_id="
             + id + ";",
         rowMapper);
   }
 
+  /**
+   * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。 RowMapperインターフェースを実装する。
+   */
   protected class HomeListRowMapper implements RowMapper<BooksJoinLendingsAndUsers> {
 
-    // 結合したテーブルのモデル型でできたbookListを生成する。
+    /**
+     * @param bookList 結合したテーブルから取得するリスト。
+     */
     private List<BooksJoinLendingsAndUsers> bookList = new ArrayList<BooksJoinLendingsAndUsers>();
 
+    /**
+     * 取得したResultsetを、List型で返す為のメソッド。
+     * 
+     * @return bookList
+     */
     public List<BooksJoinLendingsAndUsers> getResults() {
       return bookList;
     }
 
-    // モデルクラスのsetterメソッドを用いて、dbから得たデータを各カラムに格納する。
+    /**
+     * dbの各カラムから得たデータを、 Books、Lendings、Usersの各モデルクラスのsetterメソッドを用いて
+     * 、オブジェクトに格納して返すメソッド。 RowMapperインターフェースのメソッドをオーバーライドしたもので、sql実行時に呼び出される。
+     * 
+     * @return viewObj 各カラムのデータが格納されたオブジェクト
+     */
     public BooksJoinLendingsAndUsers mapRow(ResultSet rs, int rowNum) throws SQLException {
       BooksJoinLendingsAndUsers viewObj = new BooksJoinLendingsAndUsers();
 
@@ -74,7 +106,6 @@ public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements 
       viewObj.setBooks(books);
       viewObj.setLendings(lendings);
       viewObj.setUsers(users);
-      // データが格納されたviewObjを返す。
       return viewObj;
     }
   }

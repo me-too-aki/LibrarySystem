@@ -1,14 +1,22 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library;
 
-// 必要なライブラリをインポート。
+/**
+ *  必要なライブラリをインポート。
+ */
 import java.sql.Date;
 import java.sql.Timestamp;
 
-// dbのbooksテーブルのモデルクラス。
+/**
+ * dbのbooksテーブルのモデルクラス。
+ */
 public class Books {
 
-  // booksテーブルのカラム。
+  /**
+   * booksテーブルのカラム。
+   */
   private int bookId;
   private String bookTitle;
   private String writterName;
@@ -17,72 +25,128 @@ public class Books {
   private int ownerUserId;
   private Timestamp registeredAt;
 
-  // booksテーブルからbook_idを取得する為のgetterメソッド。
+  /**
+   * bookIdを取得する為のgetterメソッド。
+   * 
+   * @return bookId
+   */
   public int getBookId() {
     return this.bookId;
   }
 
-  // booksテーブルからbook_titleを取得する為のgetterメソッド。
+  /**
+   * bookTitleを取得する為のgetterメソッド。
+   * 
+   * @return bookTitle
+   */
   public String getBookTitle() {
     return this.bookTitle;
   }
 
-  // booksテーブルからwirrter_nameを取得する為のgetterメソッド。
+  /**
+   * writterNameを取得する為のgetterメソッド。
+   * 
+   * @return writterName
+   */
   public String getWritterName() {
     return this.writterName;
   }
 
-  // booksテーブルからpublisherを取得する為のgetterメソッド。
+  /**
+   * publisherを取得する為のgetterメソッド。
+   * 
+   * @return publisher
+   */
   public String getPublisher() {
     return this.publisher;
   }
 
-  // booksテーブルからpublished_atを取得する為のgetterメソッド。
+  /**
+   * publishedAtを取得する為のgetterメソッド。
+   * 
+   * @return publishedAt
+   */
   public Date getpublishedAt() {
     return this.publishedAt;
   }
 
-  // booksテーブルからowner_user_idを取得する為のgetterメソッド。
+  /**
+   * ownerUserIdを取得する為のgetterメソッド。
+   * 
+   * @return ownerUserId
+   */
   public int getOwnerUserId() {
     return this.ownerUserId;
   }
 
-  // booksテーブルからregistered_atを取得する為のgetterメソッド。
+  /**
+   * registeredAtを取得する為のgetterメソッド。
+   * 
+   * @return registeredAt
+   */
   public Timestamp getRegisteredAt() {
     return this.registeredAt;
   }
 
-  // book_idに値を挿入するsetterメソッド。
+  /**
+   * bookIdに値を挿入するsetterメソッド。
+   * 
+   * @param bookId
+   */
   public void setBookId(int bookId) {
     this.bookId = bookId;
   }
 
-  // book_titleに値を挿入するsetterメソッド。
+  /**
+   * bookTitleに値を挿入するsetterメソッド。
+   * 
+   * @param bookTitle
+   */
   public void setBookTitle(String bookTitle) {
     this.bookTitle = bookTitle;
   }
 
-  // writter_nameに値を挿入するsetterメソッド。
+  /**
+   * writterNameに値を挿入するsetterメソッド。
+   * 
+   * @param writterName
+   */
   public void setWritterName(String writterName) {
     this.writterName = writterName;
   }
 
-  // publisherに値を挿入するsetterメソッド。
+  /**
+   * publisherに値を挿入するsetterメソッド。
+   * 
+   * @param publisher
+   */
   public void setPublisher(String publisher) {
     this.publisher = publisher;
   }
 
-  // published_atに値を挿入するsetterメソッド。
+  /**
+   * publishedAtに値を挿入するsetterメソッド。
+   * 
+   * @param publishedAt
+   */
   public void setPublishedAt(Date publishedAt) {
     this.publishedAt = publishedAt;
   }
 
-  // owner_user_idに値を挿入するsetterメソッド。
+  /**
+   * ownerUserIdに値を挿入するsetterメソッド。
+   * 
+   * @param ownerUserId
+   */
   public void setOwnerUserId(int ownerUserId) {
     this.ownerUserId = ownerUserId;
   }
 
-  // registered_atに値を挿入するsetterメソッド。
+  /**
+   * registeredAtに値を挿入するsetterメソッド。
+   * 
+   * @param registeredAt
+   */
   public void setRegisteredAt(Timestamp registeredAt) {
     this.registeredAt = registeredAt;
   }

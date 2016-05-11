@@ -1,7 +1,11 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library.controller;
 
-//必要なライブラリをインポート。
+/**
+ * 必要なライブラリをインポート。
+ */
 import java.util.List;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +23,34 @@ import com.manage.library.dao.BooksJoinLendingsAndUsersDao;
 @Controller
 public class HomeController {
 
-//各dbから取得した値を格納する為のオブジェクトを宣言する。
+  /**
+   * 値を注入する為のオブジェクトを宣言する。
+   * 
+   * @param BooksJoinLendingsAndUsersDaoView
+   *          結合したテーブルから取得した値を注入するオブジェクト
+   */
   @Autowired
   private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView;
 
   /**
-   * 書籍一覧画面に遷移するメソッド。
+   * 貸出図書一覧画面に遷移するメソッド。 ホーム画面へのリクエストが来た時に実行される。
    * 
-   * @return viewファイル。
+   * @return bookDetail
    */
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(Locale locale, Model model) {
 
-    // dbから取得したリストをビューに渡す。
+    /**
+     * dbから取得したリストをビューに返す処理。
+     * BooksJoinLendingsAndUsersDaoインターフェースのfindAllメソッドを使い、テーブルから対応するデータを全て取得し、
+     * 取得したデータを、booksという名前でModel型オブジェクトに設定する。
+     */
     List<BooksJoinLendingsAndUsers> homeList = booksJoinLendingsAndUsersDaoView.findAll();
     model.addAttribute("books", homeList);
 
-    // viewファイルを返す。
+    /**
+     * viewファイルを返す。
+     */
     return "home";
   }
 }

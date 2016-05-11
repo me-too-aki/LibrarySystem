@@ -1,7 +1,11 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library.dao;
 
-//必要なライブラリをインポート。
+/**
+ * 必要なライブラリをインポート。
+ */
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,39 +17,67 @@ import com.manage.library.LendedHistorys;
 import com.manage.library.LendedHistorysJoinUsers;
 import com.manage.library.Users;
 
-//dbとの実際のやり取りの詳細を記述する、Dao継承クラス。
+/**
+ * dbとの実際のやり取りの詳細を記述する、Dao継承クラス。
+ */
 public class LendedHistorysJoinUsersDaoImpl extends JdbcDaoSupport implements LendedHistorysJoinUsersDao {
 
-  // 継承した抽象メソッドをオーバーライドし、具体的な内容を記述。
+  /**
+   * 結合したテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+   * rowMapperを生成し、sql文の結果を格納してテンプレートで返す。
+   * 
+   * @return return getJdbcTemplate().query(
+   *         "select * from lended_historys inner join users on borrow_user_id = user_id;"
+   *         , rowMapper);
+   */
   public List<LendedHistorysJoinUsers> findAll() throws DataAccessException {
-
-    // 結合したテーブルのモデル型でできたrowmapperを生成する。
     RowMapper<LendedHistorysJoinUsers> rowMapper = new HomeListRowMapper();
-    // sql文の結果をテンプレートで返す。
     return getJdbcTemplate().query("select * from lended_historys inner join users on borrow_user_id = user_id;",
         rowMapper);
   }
 
-  // 継承した抽象メソッドをオーバーライドし、具体的な内容を記述。
+  /**
+   * 結合したテーブルから、対応するレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+   * rowMapperを生成し、sql文の結果を格納してテンプレートで返す。
+   * 
+   * @param id
+   * @return getJdbcTemplate().query(
+   *         "select * from lended_historys inner join users on borrow_user_id = user_id where book_id="
+   *         + id + ";", rowMapper);
+   */
   public List<LendedHistorysJoinUsers> findFromId(int id) {
-    // 結合したテーブルのモデル型でできたrowmapperを生成する。
     RowMapper<LendedHistorysJoinUsers> rowMapper = new HomeListRowMapper();
-    // sql文の結果をテンプレートで返す。
     return getJdbcTemplate().query(
         "select * from lended_historys inner join users on borrow_user_id = user_id where book_id=" + id + ";",
         rowMapper);
   }
 
+  /**
+   * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。 RowMapperインターフェースを実装する。
+   */
   protected class HomeListRowMapper implements RowMapper<LendedHistorysJoinUsers> {
 
-    // 結合したテーブルのモデル型でできたbookListを生成する。
+    /**
+     * @param bookList
+     *          結合したテーブルから取得するリスト。
+     */
     private List<LendedHistorysJoinUsers> bookList = new ArrayList<LendedHistorysJoinUsers>();
 
+    /**
+     * 取得したResultsetを、List型で返す為のメソッド。
+     * 
+     * @return bookList
+     */
     public List<LendedHistorysJoinUsers> getResults() {
       return bookList;
     }
 
-    // モデルクラスのsetterメソッドを用いて、dbから得たデータを各カラムに格納する。
+    /**
+     * dbの各カラムから得たデータを、 LendedHistorys、Usersの各モデルクラスのsetterメソッドを用いて
+     * 、オブジェクトに格納して返すメソッド。 RowMapperインターフェースのメソッドをオーバーライドしたもので、sql実行時に呼び出される。
+     * 
+     * @return viewObj 各カラムのデータが格納されたオブジェクト
+     */
     public LendedHistorysJoinUsers mapRow(ResultSet rs, int rowNum) throws SQLException {
       LendedHistorysJoinUsers viewObj = new LendedHistorysJoinUsers();
       LendedHistorys lendedHistorys = new LendedHistorys();
@@ -61,7 +93,6 @@ public class LendedHistorysJoinUsersDaoImpl extends JdbcDaoSupport implements Le
 
       viewObj.setLendedHistorys(lendedHistorys);
       viewObj.setUsers(users);
-      // データが格納されたviewObjを返す。
       return viewObj;
     }
   }

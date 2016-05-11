@@ -1,65 +1,113 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library;
 
-//必要なライブラリをインポート。
+/**
+ * 必要なライブラリをインポート。
+ */
 import java.sql.Timestamp;
 
-//dbのlended_historysテーブルのモデルクラス。
+/**
+ * dbのlended_historysテーブルのモデルクラス。
+ */
 public class LendedHistorys {
 
-  // lended_historysテーブルのカラム。
+  /**
+   * lended_historysテーブルのカラム。
+   */
   private int historyId;
   private int bookId;
   private Timestamp lendedAt;
   private Timestamp returnedAt;
   private int borrowUserId;
 
-  // lended_historysテーブルからhistory_idを取得する為のgetterメソッド。
+  /**
+   * historyIdを取得する為のgetterメソッド。
+   * 
+   * @return historyId
+   */
   public int getHistoryId() {
     return this.historyId;
   }
 
-  // lended_historysテーブルからbook_idを取得する為のgetterメソッド。
+  /**
+   * bookIdを取得する為のgetterメソッド。
+   * 
+   * @return bookId
+   */
   public int getBookId() {
     return this.bookId;
   }
 
-  // lended_historysテーブルからlended_atを取得する為のgetterメソッド。
+  /**
+   * lendedAtを取得する為のgetterメソッド。
+   * 
+   * @return lendedAt
+   */
   public Timestamp getLendedAt() {
     return this.lendedAt;
   }
 
-  // lended_historysテーブルからreturned_atを取得する為のgetterメソッド。
+  /**
+   * returnedAtを取得する為のgetterメソッド。
+   * 
+   * @return returnedAt
+   */
   public Timestamp getReturnedAt() {
     return this.returnedAt;
   }
 
-  // lended_historysテーブルからborrow_user_idを取得する為のgetterメソッド。
+  /**
+   * borrowUserIdを取得する為のgetterメソッド。
+   * 
+   * @return borrowUserId
+   */
   public int getBorrowUserId() {
     return this.borrowUserId;
   }
 
-  // history_idに値を挿入するsetterメソッド。
+  /**
+   * historyIdに値を挿入するsetterメソッド。
+   * 
+   * @param historyId
+   */
   public void setHistoryId(int historyId) {
     this.historyId = historyId;
   }
 
-  // book_idに値を挿入するsetterメソッド。
+  /**
+   * bookIdに値を挿入するsetterメソッド。
+   * 
+   * @param bookId
+   */
   public void setBookId(int bookId) {
     this.bookId = bookId;
   }
 
-  // lended_atに値を挿入するsetterメソッド。
+  /**
+   * lendedAtに値を挿入するsetterメソッド。
+   * 
+   * @param lendedAt
+   */
   public void setLendedAt(Timestamp lendedAt) {
     this.lendedAt = lendedAt;
   }
 
-  // returned_atに値を挿入するsetterメソッド。
+  /**
+   * returnedAtに値を挿入するsetterメソッド。
+   * 
+   * @param returnedAt
+   */
   public void setReturnedAt(Timestamp returnedAt) {
     this.returnedAt = returnedAt;
   }
 
-  // borrow_user_idに値を挿入するsetterメソッド。
+  /**
+   * borrowUserIdに値を挿入するsetterメソッド。
+   * 
+   * @param borrowUserId
+   */
   public void setBorrowUserId(int borrowUserId) {
     this.borrowUserId = borrowUserId;
   }

@@ -1,29 +1,47 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library;
 
-//dbのlended_historys,Usersを結合させたビューのモデルクラス。
+/**
+ * dbのlended_historys,usersを結合させたビューのモデルクラス。
+ */
 public class LendedHistorysJoinUsers {
 
-  // 結合した各テーブルのモデルクラスをインスタンス化。
+  /**
+   *  結合した各テーブルのモデルクラスをインスタンス化。
+   */
   private LendedHistorys lendedHistorys;
   private Users users;
 
-  // lended_historysテーブルから値を得る為のgetterメソッド。
+  /**
+   *  LendedHistorysクラスから値を得る為のgetterメソッド。
+   * @return lendedHistorys
+   */
   public LendedHistorys getLendedHistorys() {
     return this.lendedHistorys;
   }
 
-  // usersテーブルから値を得る為のgetterメソッド。
+  /**
+   *  Usersクラスから値を得る為のgetterメソッド。
+   * @return users
+   */
   public Users getUsers() {
     return this.users;
   }
 
-  // lended_historysテーブルに値を挿入する為のsetterメソッド。
+  /**
+   *  lendedHistorysクラスに値を挿入する為のsetterメソッド。
+   * @param lendedHistorys
+   */
   public void setLendedHistorys(LendedHistorys lendedHistorys) {
     this.lendedHistorys = lendedHistorys;
   }
 
-  // usersテーブルに値を挿入する為のsetterメソッド。
+  /**
+   *  usersクラスに値を挿入する為のsetterメソッド。
+   * @param users
+   */
   public void setUsers(Users users) {
     this.users = users;
   }

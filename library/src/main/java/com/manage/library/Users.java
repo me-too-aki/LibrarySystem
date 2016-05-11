@@ -1,29 +1,51 @@
-// パッケージ名。
+/**
+ *  パッケージ名。
+ */
 package com.manage.library;
 
-//dbのbooksテーブルのモデルクラス。
+/**
+ * dbのusersテーブルのモデルクラス。
+ */
 public class Users {
 
-  // booksテーブルのカラム。
+  /**
+   * usersテーブルのカラム。
+   */
   private int userId;
   private String userName;
 
-  // usersテーブルからuser_idを取得する為のgetterメソッド。
+  /**
+   * userIdを取得する為のgetterメソッド。
+   * 
+   * @return userId
+   */
   public int getUserId() {
     return this.userId;
   }
 
-  // usersテーブルからuser_nameを取得する為のgetterメソッド。
+  /**
+   * userNameを取得する為のgetterメソッド。
+   * 
+   * @return userName
+   */
   public String getUserName() {
     return this.userName;
   }
 
-  // user_idに値を挿入するsetterメソッド。
+  /**
+   * userIdに値を挿入するsetterメソッド。
+   * 
+   * @param userId
+   */
   public void setUserId(int userId) {
     this.userId = userId;
   }
 
-  // user_nameに値を挿入するsetterメソッド。
+  /**
+   * userNameに値を挿入するsetterメソッド。
+   * 
+   * @param userName
+   */
   public void setUserName(String userName) {
     this.userName = userName;
   }
