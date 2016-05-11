@@ -9,8 +9,15 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.manage.library.Users;
 
+/**
+ * ユーザテーブルのDAO実装クラス
+ */
 public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
 
+  /**
+   * ユーザテーブルの全レコードを取得するメソッド
+   * @return ユーザテーブルの全レコードリスト
+   */
   public List<Users> findAll() throws DataAccessException {
 
     RowMapper<Users> rowMapper = new UsersListRowMapper();
