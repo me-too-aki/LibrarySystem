@@ -1,5 +1,7 @@
+// パッケージ名。
 package com.manage.library.dao;
 
+//必要なライブラリをインポート。
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,18 +14,25 @@ import com.manage.library.BooksJoinLendingsAndUsers;
 import com.manage.library.Lendings;
 import com.manage.library.Users;
 
+//dbとの実際のやり取りの詳細を記述する、Dao継承クラス。
 public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements BooksJoinLendingsAndUsersDao {
 
+  // 継承した抽象メソッドをオーバーライドし、具体的な内容を記述。
   public List<BooksJoinLendingsAndUsers> findAll() throws DataAccessException {
 
+    // 結合したテーブルのモデル型でできたrowmapperを生成する。
     RowMapper<BooksJoinLendingsAndUsers> rowMapper = new HomeListRowMapper();
+    // sql文の結果をテンプレートで返す。
     return getJdbcTemplate().query(
         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id;",
         rowMapper);
   }
 
+  // 継承した抽象メソッドをオーバーライドし、具体的な内容を記述。
   public List<BooksJoinLendingsAndUsers> findFromId(int id) {
+    // 結合したテーブルのモデル型でできたrowmapperを生成する。
     RowMapper<BooksJoinLendingsAndUsers> rowMapper = new HomeListRowMapper();
+    // sql文の結果をテンプレートで返す。
     return getJdbcTemplate().query(
         "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id where books.book_id="
             + id + ";",
@@ -32,12 +41,14 @@ public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements 
 
   protected class HomeListRowMapper implements RowMapper<BooksJoinLendingsAndUsers> {
 
+    // 結合したテーブルのモデル型でできたbookListを生成する。
     private List<BooksJoinLendingsAndUsers> bookList = new ArrayList<BooksJoinLendingsAndUsers>();
 
     public List<BooksJoinLendingsAndUsers> getResults() {
       return bookList;
     }
 
+    // モデルクラスのsetterメソッドを用いて、dbから得たデータを各カラムに格納する。
     public BooksJoinLendingsAndUsers mapRow(ResultSet rs, int rowNum) throws SQLException {
       BooksJoinLendingsAndUsers viewObj = new BooksJoinLendingsAndUsers();
 
@@ -63,6 +74,7 @@ public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements 
       viewObj.setBooks(books);
       viewObj.setLendings(lendings);
       viewObj.setUsers(users);
+      // データが格納されたviewObjを返す。
       return viewObj;
     }
   }

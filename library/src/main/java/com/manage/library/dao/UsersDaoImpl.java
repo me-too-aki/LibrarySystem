@@ -1,3 +1,4 @@
+// パッケージ名。
 package com.manage.library.dao;
 
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.manage.library.Users;
 
 /**
- * ユーザテーブルのDAO実装クラス
+ * ユーザテーブルとの実際のデータのやり取りを記載するDAO実装クラス
  */
 public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
 
@@ -24,6 +25,10 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
     return getJdbcTemplate().query("select * from users;", rowMapper);
   }
 
+  /**
+   * ユーザテーブルの対応するidから1レコードを取得するメソッド
+   * @return ユーザテーブルのレコード
+   */
   public String findUserNameFromUserId(int userId) {
     if (userId != 0) {
       return getJdbcTemplate().queryForObject("select user_name from users where user_id=" + userId + ";",
@@ -41,6 +46,10 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
       return UsersList;
     }
 
+    /**
+     * モデルクラスのsetterメソッドを用いて、dbから得たデータを各カラムに格納するメソッド
+     * @return データを格納したオブジェクト
+     */
     public Users mapRow(ResultSet rs, int rowNum) throws SQLException {
       Users viewObj = new Users();
       viewObj.setUserId(rs.getInt("user_id"));
