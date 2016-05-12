@@ -42,7 +42,7 @@ public class LendedHistorysJoinUsersDaoImpl extends JdbcDaoSupport implements Le
     public List<LendedHistorysJoinUsers> findFromId(int id) {
         // 結合したテーブルモデルの要素でできたrowMapperを生成する。
         RowMapper<LendedHistorysJoinUsers> rowMapper = new HomeListRowMapper();
-        // 結合したテーブルの、欲しいレコードをテンプレートで返す。
+        // 結合したテーブルの、idに対応するレコードをテンプレートで返す。
         return getJdbcTemplate().query(
                 "select * from lended_historys inner join users on borrow_user_id = user_id where book_id=" + id + ";",
                 rowMapper);

@@ -39,7 +39,7 @@ public class BooksDaoImpl extends JdbcDaoSupport implements BooksDao {
     public Books findFromBookId(int id) {
         // Books型の要素でできたrowMapperを生成する。
         RowMapper<Books> rowMapper = new BooksListRowMapper();
-        // booksテーブルの、欲しいレコードをテンプレートで返す。
+        // booksテーブルの、idに対応するレコードをテンプレートで返す。
         return getJdbcTemplate().queryForObject("select * from books where book_id=" + id + ";", rowMapper);
     }
 

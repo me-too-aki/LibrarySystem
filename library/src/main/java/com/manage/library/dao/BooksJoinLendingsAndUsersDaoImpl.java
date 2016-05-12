@@ -45,7 +45,7 @@ public class BooksJoinLendingsAndUsersDaoImpl extends JdbcDaoSupport implements 
     public List<BooksJoinLendingsAndUsers> findFromId(int id) {
         // 結合したテーブルモデルの要素でできたrowMapperを生成する。
         RowMapper<BooksJoinLendingsAndUsers> rowMapper = new HomeListRowMapper();
-        // 結合したテーブルの、欲しいレコードをテンプレートで返す。
+        // 結合したテーブルの、idに対応するレコードをテンプレートで返す。
         return getJdbcTemplate().query(
                 "select * from books left outer join users on user_id = owner_user_id inner join lendings on books.book_id = lendings.book_id where books.book_id="
                 + id + ";",

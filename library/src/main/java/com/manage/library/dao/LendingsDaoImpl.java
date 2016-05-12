@@ -39,7 +39,7 @@ public class LendingsDaoImpl extends JdbcDaoSupport implements LendingsDao {
     public List<Lendings> findFromId(int id) {
         // Lendings型の要素でできたrowMapperを生成する。
         RowMapper<Lendings> rowMapper = new LendingsListRowMapper();
-        // lendingsテーブルの、欲しいレコードをテンプレートで返す。
+        // lendingsテーブルの、idに対応するレコードをテンプレートで返す。
         return getJdbcTemplate().query("select * from lendings where book_id=" + id + ";", rowMapper);
     }
 

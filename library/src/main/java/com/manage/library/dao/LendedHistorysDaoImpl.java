@@ -41,7 +41,7 @@ public class LendedHistorysDaoImpl extends JdbcDaoSupport implements LendedHisto
   public List<LendedHistorys> findFromId(int id) {
     // LendedHistorys型の要素でできたrowMapperを生成する。
     RowMapper<LendedHistorys> rowMapper = new LendedHistorysListRowMapper();
-    // lended_historysテーブルの、欲しいレコードをテンプレートで返す。
+    // lended_historysテーブルの、idに対応するレコードをテンプレートで返す。
     return getJdbcTemplate().query("select * from lended_historys where history_id=" + id + ";", rowMapper);
   }
 
