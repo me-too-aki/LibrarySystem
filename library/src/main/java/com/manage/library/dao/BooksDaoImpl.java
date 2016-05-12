@@ -1,11 +1,10 @@
 /**
- *  パッケージ名。
+ *  Daoのパッケージ。
  */
 package com.manage.library.dao;
 
-/**
- * 必要なライブラリをインポート。
- */
+//必要なライブラリをインポート。
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,60 +15,49 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.manage.library.Books;
 
 /**
- * dbとの実際のやり取りの詳細を記述する、Dao継承クラス。
+ * dbのbooksテーブルとのやり取りを記載するクラス。
  */
 public class BooksDaoImpl extends JdbcDaoSupport implements BooksDao {
 
   /**
    * booksテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
-   * Books型の要素でできたrowMapperを生成し、sql文の結果を格納してテンプレートで返す。
    * 
    * @return getgetJdbcTemplate().query("select * from books;", rowMapper);
    */
   public List<Books> findAll() throws DataAccessException {
+    // Books型の要素でできたrowMapperを生成する。
     RowMapper<Books> rowMapper = new BooksListRowMapper();
+    // booksテーブルのデータ全てをテンプレートで返す。
     return getJdbcTemplate().query("select * from books;", rowMapper);
   }
 
   /**
    * booksテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
-   * Books型の要素でできたrowmapperを生成し、sql文の結果を格納してテンプレートで返す。
    * 
    * @param id
    * @return getgetJdbcTemplate().query("select * from books;", rowMapper);
    */
   public Books findFromBookId(int id) {
+    // Books型の要素でできたrowMapperを生成する。
     RowMapper<Books> rowMapper = new BooksListRowMapper();
+    // booksテーブルの、欲しいレコードをテンプレートで返す。
     return getJdbcTemplate().queryForObject("select * from books where book_id=" + id + ";", rowMapper);
   }
 
   /**
-   * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。 RowMapperインターフェースを実装する。
+   * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。
    */
   protected class BooksListRowMapper implements RowMapper<Books> {
 
     /**
-     * @param booksテーブルから取得するリスト。
-     */
-    private List<Books> bookList = new ArrayList<Books>();
-
-    /**
-     * 取得したResultsetを、List型で返す為のメソッド。
-     * 
-     * @return bookList
-     */
-    public List<Books> getResults() {
-      return bookList;
-    }
-
-    /**
-     * dbの各カラムから得たデータを、モデルクラスのsetterメソッドを用いて オブジェクトに格納して返すメソッド。
-     * RowMapperインターフェースのメソッドをオーバーライドしたもので、sql実行時に呼び出される。
+     * 実際にbooksテーブルから得たデータを、オブジェクトに格納して返すメソッド。
      * 
      * @return viewObj 各カラムのデータが格納されたオブジェクト
      */
     public Books mapRow(ResultSet rs, int rowNum) throws SQLException {
+      // Books型のオブジェクトを生成する。ここに各カラムのデータを入れる。
       Books viewObj = new Books();
+      // Booksクラスのsetterを用いて、それぞれ値を入れる。
       viewObj.setBookId(rs.getInt("book_id"));
       viewObj.setBookTitle(rs.getString("book_title"));
       viewObj.setWritterName(rs.getString("writter_name"));
@@ -77,6 +65,7 @@ public class BooksDaoImpl extends JdbcDaoSupport implements BooksDao {
       viewObj.setPublishedAt(rs.getDate("published_at"));
       viewObj.setOwnerUserId(rs.getInt("owner_user_id"));
       viewObj.setRegisteredAt(rs.getTimestamp("registered_at"));
+      // データを入れたオブジェクトを返す。
       return viewObj;
     }
   }

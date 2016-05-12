@@ -1,11 +1,10 @@
 /**
- *  パッケージ名。
+ *  Daoのパッケージ。
  */
 package com.manage.library.dao;
 
-/**
- * 必要なライブラリをインポート。
- */
+// 必要なライブラリをインポート。
+
 import java.util.List;
 import com.manage.library.Lendings;
 
@@ -14,12 +13,13 @@ import com.manage.library.Lendings;
  */
 public interface LendingsDao {
   /**
-   *  lendingsテーブルのデータを全て取得する抽象メソッド。
+   * lendingsテーブルのデータを全て取得する抽象メソッド。
    */
   List<Lendings> findAll();
 
   /**
-   *  対応するidからレコードを取得する抽象メソッド。
+   * 対応するidからレコードを取得する抽象メソッド。
+   * 
    * @param id
    */
   List<Lendings> findFromId(int id);

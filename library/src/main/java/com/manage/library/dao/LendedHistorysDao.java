@@ -1,11 +1,10 @@
 /**
- *  パッケージ名。
+ *  Daoのパッケージ。
  */
 package com.manage.library.dao;
 
-/**
- * 必要なライブラリをインポート。
- */
+// 必要なライブラリをインポート。
+
 import java.util.List;
 import com.manage.library.LendedHistorys;
 

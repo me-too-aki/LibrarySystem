@@ -21,7 +21,7 @@ import com.manage.library.dao.BooksJoinLendingsAndUsersDao;
 public class HomeController {
 
   @Autowired
-  private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView; // dbからbooks(本)、lendings(貸出履歴)、users(ユーザ)テーブルの、それぞれのデータを取得する為のオブジェクト。
+  private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView; // dbからbooksテーブルとlendingsテーブルとusersテーブルのそれぞれのレコードを持ってくる為のオブジェクト。
 
   /**
    * 貸出図書一覧画面を表示するメソッド。 ホーム画面へのGETリクエストが来た時に実行される。

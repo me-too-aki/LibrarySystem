@@ -1,11 +1,10 @@
 /**
- *  パッケージ名。
+ *  コントローラクラスのパッケージ。
  */
 package com.manage.library.controller;
 
-/**
- * 必要なライブラリをインポート。
- */
+//必要なライブラリをインポート。
+
 import java.util.List;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,30 +20,20 @@ import com.manage.library.dao.LendedHistorysJoinUsersDao;
 import com.manage.library.dao.UsersDao;
 
 /**
- * 貸出図書詳細画面に対応するコントローラクラス。
+ * 貸出図書詳細画面のコントローラクラス。
  */
 @Controller
 public class BookDetailController {
 
-  /**
-   * 値を注入する為のオブジェクトを宣言する。
-   * 
-   * @param lendedHistorysDaoView
-   *          lendedHistorysテーブルから取得した値を注入するオブジェクト
-   * @param booksDaoView
-   *          booksテーブルから取得した値を注入するオブジェクト
-   * @param usersDaoView
-   *          usersテーブルから取得した値を注入するオブジェクト
-   */
   @Autowired
-  private LendedHistorysJoinUsersDao lendedHistorysDaoView;
+  private LendedHistorysJoinUsersDao lendedHistorysDaoView; // dbからlended_historysテーブルとusersテーブルのレコードを全て持ってくる為のオブジェクト。
   @Autowired
-  private BooksDao booksDaoView;
+  private BooksDao booksDaoView;// dbからbooksテーブルのレコードを持ってくる為のオブジェクト。
   @Autowired
-  private UsersDao usersDaoView;
+  private UsersDao usersDaoView; // dbからusersテーブルのレコードを持ってくる為のオブジェクト。
 
   /**
-   * 貸出図書詳細画面に遷移するメソッド。 GET方式でbookDetailのリクエストが来た時に実行される。
+   * 貸出図書詳細画面を表示するメソッド。bookDetailへのGETリクエストが来た時に実行される。
    * 前画面から送られるbookIdによって、表示される内容を変える。
    * 
    * @return bookDetail
@@ -52,34 +41,25 @@ public class BookDetailController {
   @RequestMapping(value = "bookDetail/{bookId}", method = RequestMethod.GET)
   public String bookDetail(@PathVariable("bookId") int id, Locale locale, Model model) {
 
-    /**
-     * dbから取得したリストをビューに返す処理。
-     * lendedHistorysJoinUsersDaoインターフェースのfindFromIdメソッドを使い、結合したテーブルから
-     * 対応するレコードを取得し、 取得したレコードを、historysJoinUsersという名前でModel型オブジェクトに設定する。
-     */
+    // 詳細画面の表示に必要なデータを得る為、dbのlended_historys、usersテーブルから、
+    // findFromIdメソッドを用いて、欲しいレコードを取得する。
     List<LendedHistorysJoinUsers> historysJoinUsersList = lendedHistorysDaoView.findFromId(id);
+    // 取得したデータを画面に表示する為、historyJoinUsersという名前でviewに渡す。
     model.addAttribute("historysJoinUsers", historysJoinUsersList);
 
-    /**
-     * dbから取得したリストをビューに返す処理。
-     * BooksDaoインターフェースのfindFromBookIdメソッドを使い、テーブルから対応するレコードを取得し、
-     * 取得したレコードを、bookRecordという名前でModel型オブジェクトに設定する。
-     */
+    // 詳細画面の表示に必要なデータを得る為、dbのbooksテーブルから、
+    // findFromBookIdメソッドを用いて、欲しいレコードを取得する。
     Books booksRecord = booksDaoView.findFromBookId(id);
+    // 取得したデータを画面に表示する為、bookRecordという名前でviewに渡す。
     model.addAttribute("bookRecord", booksRecord);
 
-    /**
-     * dbから取得した値をビューに返す処理。
-     * UsersDaoインターフェースのfindUserNameFromUserIdメソッドを使い、テーブルから対応する値を取得する。
-     * findUserNameFromUserIdの引数には、 先程取得したbooksテーブルのレコードから、OwnerUserIdを取得し用いる。
-     * テーブルから取得した値を、ownerUserNameという名前でModel型オブジェクトに設定する。
-     */
+    // 詳細画面の表示に必要なデータを得る為、dbのusersテーブルから、
+    // findUserNameFromUserIdメソッドを用いて、欲しいユーザ名を取得する。
     String ownerUserName = usersDaoView.findUserNameFromUserId(booksRecord.getOwnerUserId());
+    // 取得したデータを画面に表示する為、ownerUserNameという名前でviewに渡す。
     model.addAttribute("ownerUserName", ownerUserName);
 
-    /**
-     * viewファイルを返す。
-     */
+    // viewファイルが返され、bookDetail.jspが表示される。
     return "bookDetail";
   }
 }
