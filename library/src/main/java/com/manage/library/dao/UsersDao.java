@@ -9,7 +9,7 @@ import java.util.List;
 import com.manage.library.Users;
 
 /**
- * dbのbooksテーブルとの情報をやり取りする為のDaoインターフェース。
+ * dbのbooksテーブルと情報をやり取りするインターフェース。
  */
 public interface UsersDao {
   /**

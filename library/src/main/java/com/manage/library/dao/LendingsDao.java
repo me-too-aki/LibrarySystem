@@ -9,7 +9,7 @@ import java.util.List;
 import com.manage.library.Lendings;
 
 /**
- * dbのlendingsテーブルとの情報をやり取りする為のDaoインターフェース。
+ * dbのlendingsテーブルと情報をやり取りするインターフェース。
  */
 public interface LendingsDao {
   /**

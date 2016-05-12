@@ -22,8 +22,8 @@ public class LendedHistorysDaoImpl extends JdbcDaoSupport implements LendedHisto
   /**
    * lended_historysテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
    * 
-   * @return getJdbcTemplate().query("select * from lended_historys;",
-   *         rowMapper);
+   * @return lended_historysテーブルの全レコード
+
    */
   public List<LendedHistorys> findAll() throws DataAccessException {
     // LendedHistorys型の要素でできたrowMapperを生成する。
@@ -36,9 +36,7 @@ public class LendedHistorysDaoImpl extends JdbcDaoSupport implements LendedHisto
    * lended_historysテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
    * 
    * @param id
-   * @return getJdbcTemplate().query(
-   *         "select * from lended_historys where history_id=" + id + ";",
-   *         rowMapper);
+   * @return lended_historysテーブルの、idに対応するレコード
    */
   public List<LendedHistorys> findFromId(int id) {
     // LendedHistorys型の要素でできたrowMapperを生成する。

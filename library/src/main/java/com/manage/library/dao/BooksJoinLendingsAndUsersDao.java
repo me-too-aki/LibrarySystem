@@ -9,7 +9,7 @@ import java.util.List;
 import com.manage.library.BooksJoinLendingsAndUsers;
 
 /**
- * books,Lending,Usersを結合したビューと情報をやり取りする為のDaoインターフェース。
+ * books,Lending,Usersを結合したビューと情報をやり取りするインターフェース。
  */
 public interface BooksJoinLendingsAndUsersDao {
   /**

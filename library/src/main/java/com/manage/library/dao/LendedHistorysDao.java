@@ -9,7 +9,7 @@ import java.util.List;
 import com.manage.library.LendedHistorys;
 
 /**
- * dbのlended_historysテーブルとの情報をやり取りする為のDaoインターフェース。
+ * dbのlended_historysテーブルと情報をやり取りするインターフェース。
  */
 public interface LendedHistorysDao {
   /**
