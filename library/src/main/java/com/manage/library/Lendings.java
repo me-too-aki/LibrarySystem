@@ -1,57 +1,111 @@
+/**
+ *  モデルクラスのパッケージ。
+ */
 package com.manage.library;
 
+// 必要なライブラリをインポート。
 import java.sql.Date;
 import java.sql.Timestamp;
 
-// 取得する値を用意し、getterとsetterを用意するクラス。
+/**
+ * dbのlendingsテーブルのモデルクラス。
+ */
 public class Lendings {
 
-  private int bookId; // 本のID。
-  private boolean lendingStatus; // 本の貸出状況。
-  private Timestamp lendedAt; // 本の貸出日時。
-  private Date dueDate; // 本の返却予定日。
-  private int borrowUserId; // 本の借入者のID。
+    // lendingsテーブルのカラム。
+    private int bookId;
+    private boolean lendingStatus;
+    private Timestamp lendedAt;
+    private Date dueDate;
+    private int borrowUserId;
 
-  // jspファイル側で値を取得する為に、getterメソッドを実装する。
-  public int getBookId() {
-    return this.bookId;
-  }
+    /**
+     * bookIdを取得する為のgetterメソッド。
+     *
+     * @return bookId
+     */
+    public int getBookId() {
+        return this.bookId;
+    }
 
-  public boolean getLendingStatus() {
-    return this.lendingStatus;
-  }
+    /**
+     * lendingStatusを取得する為のgetterメソッド。
+     *
+     * @return lendedStatus
+     */
+    public boolean getLendingStatus() {
+        return this.lendingStatus;
+    }
 
-  public Timestamp getLendedAt() {
-    return this.lendedAt;
-  }
+    /**
+     * lendedAtを取得する為のgetterメソッド。
+     *
+     * @return lendedAt
+     */
+    public Timestamp getLendedAt() {
+        return this.lendedAt;
+    }
 
-  public Date getDueDate() {
-    return this.dueDate;
-  }
+    /**
+     * dueDateを取得する為のgetterメソッド。
+     *
+     * @return dueDate
+     */
+    public Date getDueDate() {
+        return this.dueDate;
+    }
 
-  public int getBorrowUserId() {
-    return this.borrowUserId;
-  }
+    /**
+     * borrowUserIdを取得する為のgetterメソッド。
+     *
+     * @return borrowUserId
+     */
+    public int getBorrowUserId() {
+        return this.borrowUserId;
+    }
 
-  // DaoImplクラスで値を入れる為に、setterメソッドを実装する。
-  public void setBookId(int bookId) {
-    this.bookId = bookId;
-  }
+    /**
+     * bookIdに値を挿入するsetterメソッド。
+     *
+     * @param bookId
+     */
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
 
-  public void setLendingStatus(boolean lendingStatus) {
-    this.lendingStatus = lendingStatus;
-  }
+    /**
+     * lendingStatusに値を挿入するsetterメソッド。
+     *
+     * @param lendingStatus
+     */
+    public void setLendingStatus(boolean lendingStatus) {
+        this.lendingStatus = lendingStatus;
+    }
 
-  public void setLendedAt(Timestamp lendedAt) {
-    this.lendedAt = lendedAt;
-  }
+    /**
+     * lendedAtに値を挿入するsetterメソッド。
+     *
+     * @param lendedAt
+     */
+    public void setLendedAt(Timestamp lendedAt) {
+        this.lendedAt = lendedAt;
+    }
 
-  public void setDueDate(Date dueDate) {
-    this.dueDate = dueDate;
-  }
+    /**
+     * dueDateに値を挿入するsetterメソッド。
+     *
+     * @param dueDate
+     */
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
 
-  public void setBorrowUserId(int borrowUserId) {
-    this.borrowUserId = borrowUserId;
-  }
-
+    /**
+     * borrowUserIdに値を挿入するsetterメソッド。
+     *
+     * @param borrowUserId
+     */
+    public void setBorrowUserId(int borrowUserId) {
+        this.borrowUserId = borrowUserId;
+    }
 }

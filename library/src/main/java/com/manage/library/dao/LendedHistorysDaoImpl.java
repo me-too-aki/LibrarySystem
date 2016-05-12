@@ -1,4 +1,9 @@
+/**
+ *  Daoのパッケージ。
+ */
 package com.manage.library.dao;
+
+// 必要なライブラリをインポート。
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,43 +14,57 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.manage.library.LendedHistorys;
 
-//Daoの実装クラス。
-//sql文を発行し、リストに詰める為のRowMapperを用意する。
+/**
+ * dbのlended_historysテーブルとのやり取りを記載するクラス。
+ */
 public class LendedHistorysDaoImpl extends JdbcDaoSupport implements LendedHistorysDao {
 
-  // dbから得たデータを、RowMapperを用いてリストに格納し、返す。
-  // 例外が発生した場合は、元のメソッドに例外処理を移譲する。
-  // テーブルからデータを全て拾ってくるメソッド。
-  public List<LendedHistorys> findAll() throws DataAccessException {
+  /**
+   * lended_historysテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+   * 
+   * @return lended_historysテーブルの全レコード
 
-    // sql文の結果を、RowMapperオブジェクトの形で返す。
+   */
+  public List<LendedHistorys> findAll() throws DataAccessException {
+    // LendedHistorys型の要素でできたrowMapperを生成する。
     RowMapper<LendedHistorys> rowMapper = new LendedHistorysListRowMapper();
+    // lended_historysテーブルのデータ全てをテンプレートで返す。
     return getJdbcTemplate().query("select * from lended_historys;", rowMapper);
   }
 
-  // テーブルから、対応するデータを拾ってくるメソッド
+  /**
+   * lended_historysテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+   * 
+   * @param id
+   * @return lended_historysテーブルの、idに対応するレコード
+   */
   public List<LendedHistorys> findFromId(int id) {
+    // LendedHistorys型の要素でできたrowMapperを生成する。
     RowMapper<LendedHistorys> rowMapper = new LendedHistorysListRowMapper();
+    // lended_historysテーブルの、idに対応するレコードをテンプレートで返す。
     return getJdbcTemplate().query("select * from lended_historys where history_id=" + id + ";", rowMapper);
   }
 
+  /**
+   * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。
+   */
   protected class LendedHistorysListRowMapper implements RowMapper<LendedHistorys> {
 
-    private List<LendedHistorys> lendedHistorysList = new ArrayList<LendedHistorys>();
-
-    // 戻り値としてリスト型で結果を返す。
-    public List<LendedHistorys> getResults() {
-      return lendedHistorysList;
-    }
-
-    // dbから得たデータ(ResultSet型)を、LendedHistorys型インスタンスにそれぞれ格納し、返す。
+    /**
+     * 実際にlended_historysテーブルから得たデータを、オブジェクトに格納して返すメソッド。
+     * 
+     * @return viewObj 各カラムのデータが格納されたオブジェクト
+     */
     public LendedHistorys mapRow(ResultSet rs, int rowNum) throws SQLException {
+      // LendedHistorys型のオブジェクトを生成する。ここに各カラムのデータを入れる。
       LendedHistorys viewObj = new LendedHistorys();
+      // LendedHistorysクラスのsetterを用いて、それぞれ値を入れる。
       viewObj.setHistoryId(rs.getInt("history_id"));
       viewObj.setBookId(rs.getInt("book_id"));
       viewObj.setLendedAt(rs.getTimestamp("lended_at"));
       viewObj.setReturnedAt(rs.getTimestamp("returned_at"));
       viewObj.setBorrowUserId(rs.getInt("borrow_user_id"));
+      // データを入れたオブジェクトを返す。
       return viewObj;
     }
   }

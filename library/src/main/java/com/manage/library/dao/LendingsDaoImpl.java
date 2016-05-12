@@ -1,5 +1,9 @@
+/**
+ *  Daoのパッケージ。
+ */
 package com.manage.library.dao;
 
+// 必要なライブラリをインポート。
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,45 +13,58 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.manage.library.Lendings;
 
-//Daoの実装クラス。
-//sql文を発行し、リストに詰める為のRowMapperを用意する。
+/**
+ * dbのlendingsテーブルとのやり取りを記載するクラス。
+ */
 public class LendingsDaoImpl extends JdbcDaoSupport implements LendingsDao {
 
-  // dbから得たデータを、RowMapperを用いてリストに格納し、返す。
-  // 例外が発生した場合は、元のメソッドに例外処理を移譲する。
-  // テーブルからデータを全て拾ってくるメソッド。
-  public List<Lendings> findAll() throws DataAccessException {
-
-    // sql文の結果を、RowMapperオブジェクトの形で返す。
-    RowMapper<Lendings> rowMapper = new LendingsListRowMapper();
-    return getJdbcTemplate().query("select * from lendings;", rowMapper);
-  }
-
-  // テーブルから、対応するデータを拾ってくるメソッド
-  public List<Lendings> findFromId(int id) {
-    RowMapper<Lendings> rowMapper = new LendingsListRowMapper();
-    return getJdbcTemplate().query("select * from lendings where book_id=" + id + ";", rowMapper);
-  }
-
-  protected class LendingsListRowMapper implements RowMapper<Lendings> {
-
-    private List<Lendings> LendingsList = new ArrayList<Lendings>();
-
-    // 戻り値としてリスト型で結果を返す。
-    public List<Lendings> getResults() {
-      return LendingsList;
+    /**
+     * lendingsテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+     *
+     * @return lendingsテーブルの全レコード
+     */
+    public List<Lendings> findAll() throws DataAccessException {
+        // Lendings型の要素でできたrowMapperを生成する。
+        RowMapper<Lendings> rowMapper = new LendingsListRowMapper();
+        // lendingsテーブルのデータ全てをテンプレートで返す。
+        return getJdbcTemplate().query("select * from lendings;", rowMapper);
     }
 
-    // dbから得たデータ(ResultSet型)を、Lendings型インスタンスにそれぞれ格納し、返す。
-    public Lendings mapRow(ResultSet rs, int rowNum) throws SQLException {
-      Lendings viewObj = new Lendings();
-      viewObj.setBookId(rs.getInt("book_id"));
-      viewObj.setLendingStatus(rs.getBoolean("lending_status"));
-      viewObj.setLendedAt(rs.getTimestamp("lended_at"));
-      viewObj.setDueDate(rs.getDate("due_date"));
-      viewObj.setBorrowUserId(rs.getInt("borrow_user_id"));
-      return viewObj;
+    /**
+     * lendingsテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+     *
+     * @param id
+     * @return lendingsテーブルの、idに対応するレコード
+     */
+    public List<Lendings> findFromId(int id) {
+        // Lendings型の要素でできたrowMapperを生成する。
+        RowMapper<Lendings> rowMapper = new LendingsListRowMapper();
+        // lendingsテーブルの、idに対応するレコードをテンプレートで返す。
+        return getJdbcTemplate().query("select * from lendings where book_id=" + id + ";", rowMapper);
     }
-  }
+
+    /**
+     * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。 RowMapperインターフェースを実装する。
+     */
+    protected class LendingsListRowMapper implements RowMapper<Lendings> {
+
+        /**
+         * 実際にlendingsテーブルから得たデータを、オブジェクトに格納して返すメソッド。
+         *
+         * @return viewObj 各カラムのデータが格納されたオブジェクト
+         */
+        public Lendings mapRow(ResultSet rs, int rowNum) throws SQLException {
+            // Lendings型のオブジェクトを生成する。ここに各カラムのデータを入れる。
+            Lendings viewObj = new Lendings();
+            // Lendingsクラスのsetterを用いて、それぞれ値を入れる。
+            viewObj.setBookId(rs.getInt("book_id"));
+            viewObj.setLendingStatus(rs.getBoolean("lending_status"));
+            viewObj.setLendedAt(rs.getTimestamp("lended_at"));
+            viewObj.setDueDate(rs.getDate("due_date"));
+            viewObj.setBorrowUserId(rs.getInt("borrow_user_id"));
+            // データを入れたオブジェクトを返す。
+            return viewObj;
+        }
+    }
 
 }

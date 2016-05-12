@@ -1,5 +1,9 @@
+/**
+ *  Daoのパッケージ。
+ */
 package com.manage.library.dao;
 
+//必要なライブラリをインポート。
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,46 +13,59 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.manage.library.Books;
 
-//Daoの実装クラス。
-//sql文を発行し、リストに詰める為のRowMapperを用意する。
+/**
+ * dbのbooksテーブルとのやり取りを記載するクラス。
+ */
 public class BooksDaoImpl extends JdbcDaoSupport implements BooksDao {
 
-  // dbから得たデータを、RowMapperを用いてリストに格納し、返す。
-  // 例外が発生した場合は、元のメソッドに例外処理を移譲する。
-  // テーブルからデータを全て拾ってくるメソッド。
-  public List<Books> findAll() throws DataAccessException {
-
-    // sql文の結果を、RowMapperオブジェクトの形で返す。
-    RowMapper<Books> rowMapper = new BooksListRowMapper();
-    return getJdbcTemplate().query("select * from books;", rowMapper);
-  }
-
-  // テーブルから、対応するデータを拾ってくるメソッド
-  public Books findFromBookId(int id) {
-    RowMapper<Books> rowMapper = new BooksListRowMapper();
-    return getJdbcTemplate().queryForObject("select * from books where book_id=" + id + ";", rowMapper);
-  }
-
-  protected class BooksListRowMapper implements RowMapper<Books> {
-
-    private List<Books> bookList = new ArrayList<Books>();
-
-    // 戻り値としてリスト型で結果を返す。
-    public List<Books> getResults() {
-      return bookList;
+    /**
+     * booksテーブルから、値を全て取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+     *
+     * @return booksテーブルの全レコード
+     */
+    public List<Books> findAll() throws DataAccessException {
+        // Books型の要素でできたrowMapperを生成する。
+        RowMapper<Books> rowMapper = new BooksListRowMapper();
+        // booksテーブルのデータ全てをテンプレートで返す。
+        return getJdbcTemplate().query("select * from books;", rowMapper);
     }
 
-    // dbから得たデータ(ResultSet型)を、Books型インスタンスにそれぞれ格納し、返す。
-    public Books mapRow(ResultSet rs, int rowNum) throws SQLException {
-      Books viewObj = new Books();
-      viewObj.setBookId(rs.getInt("book_id"));
-      viewObj.setBookTitle(rs.getString("book_title"));
-      viewObj.setWritterName(rs.getString("writter_name"));
-      viewObj.setPublisher(rs.getString("publisher"));
-      viewObj.setPublishedAt(rs.getDate("published_at"));
-      viewObj.setOwnerUserId(rs.getInt("owner_user_id"));
-      viewObj.setRegisteredAt(rs.getTimestamp("registered_at"));
-      return viewObj;
+    /**
+     * booksテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+     *
+     * @param id
+     * @return booksテーブルの、idに対応するレコード
+     */
+    public Books findFromBookId(int id) {
+        // Books型の要素でできたrowMapperを生成する。
+        RowMapper<Books> rowMapper = new BooksListRowMapper();
+        // booksテーブルの、idに対応するレコードをテンプレートで返す。
+        return getJdbcTemplate().queryForObject("select * from books where book_id=" + id + ";", rowMapper);
     }
-  }
+
+    /**
+     * dbからResultSet型で得た値をオブジェクトに落とし込む為のクラス。
+     */
+    protected class BooksListRowMapper implements RowMapper<Books> {
+
+        /**
+         * 実際にbooksテーブルから得たデータを、オブジェクトに格納して返すメソッド。
+         *
+         * @return viewObj 各カラムのデータが格納されたオブジェクト
+         */
+        public Books mapRow(ResultSet rs, int rowNum) throws SQLException {
+            // Books型のオブジェクトを生成する。ここに各カラムのデータを入れる。
+            Books viewObj = new Books();
+            // Booksクラスのsetterを用いて、それぞれ値を入れる。
+            viewObj.setBookId(rs.getInt("book_id"));
+            viewObj.setBookTitle(rs.getString("book_title"));
+            viewObj.setWritterName(rs.getString("writter_name"));
+            viewObj.setPublisher(rs.getString("publisher"));
+            viewObj.setPublishedAt(rs.getDate("published_at"));
+            viewObj.setOwnerUserId(rs.getInt("owner_user_id"));
+            viewObj.setRegisteredAt(rs.getTimestamp("registered_at"));
+            // データを入れたオブジェクトを返す。
+            return viewObj;
+        }
+    }
 }

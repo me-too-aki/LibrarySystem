@@ -1,5 +1,9 @@
+/**
+ *  コントローラクラスのパッケージ。
+ */
 package com.manage.library.controller;
 
+// 必要なライブラリをインポートする。
 import java.util.List;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,29 +11,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.manage.library.BooksJoinLendingsAndUsers;
 import com.manage.library.dao.BooksJoinLendingsAndUsersDao;
 
-// 一覧画面(home)のコントローラ。
+/**
+ * 貸出図書一覧画面のコントローラクラス。
+ */
 @Controller
 public class HomeController {
 
-  //dbからデータを得るbooksJoinLendingsAndUsersDaoViewを用意する。
-  @Autowired
-  private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView;
+    @Autowired
+    private BooksJoinLendingsAndUsersDao booksJoinLendingsAndUsersDaoView; // dbからbooksテーブルとlendingsテーブルとusersテーブルを結合したビューのレコードを持ってくる為のオブジェクト。
 
-  // Viewに渡したいオブジェクトを、アノテーションで設定する。
-  @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String home(Locale locale, Model model) {
+    /**
+     * 貸出図書一覧画面を表示するメソッド。 ホーム画面へのGETリクエストが来た時に実行される。
+     *
+     * @return home 貸出図書一覧画面
+     */
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Locale locale, Model model) {
 
-    // dbから得たデータをList型変数に格納し、そのhome_listをmodelに格納する。
-    List<BooksJoinLendingsAndUsers> homeList = booksJoinLendingsAndUsersDaoView.findAll();
-    model.addAttribute("books", homeList);
+        // 一覧画面の表示に必要なデータを得る為、dbのbooks、lendings、usersテーブルからデータを全て取得する。
+        List<BooksJoinLendingsAndUsers> homeList = booksJoinLendingsAndUsersDaoView.findAll();
+        // 取得したデータを画面に表示する為、booksという名前でmodelに設定する。
+        model.addAttribute("books", homeList);
 
-    // view名を返却する。
-    // web.xmlの【value="/WEB-INF/views/】により、
-    // WEB-INF/views/home.jspがレンダリングされる。
-    return "home";
-  }
+        // home.jspが表示される。
+        return "home";
+    }
 }

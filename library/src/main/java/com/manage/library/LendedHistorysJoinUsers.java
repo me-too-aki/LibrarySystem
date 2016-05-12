@@ -1,25 +1,50 @@
+/**
+ *  モデルクラスのパッケージ。
+ */
 package com.manage.library;
 
-// 取得する値を用意し、getterとsetterを用意するクラス。
+/**
+ * dbのlended_historys,usersを結合したビューのモデルクラス。
+ */
 public class LendedHistorysJoinUsers {
 
-  private LendedHistorys lendedHistorys;
-  private Users users;
+    // 結合した各テーブルのモデルクラスをインスタンス化する。
+    private LendedHistorys lendedHistorys;
+    private Users users;
 
-  // jspファイル側で値を取得する為に、getterメソッドを実装する。
-  public LendedHistorys getLendedHistorys() {
-    return this.lendedHistorys;
-  }
+    /**
+     * lendedHistorysの値を得る為のgetterメソッド。
+     *
+     * @return lendedHistorys
+     */
+    public LendedHistorys getLendedHistorys() {
+        return this.lendedHistorys;
+    }
 
-  public Users getUsers() {
-    return this.users;
-  }
+    /**
+     * usersの値を得る為のgetterメソッド。
+     *
+     * @return users
+     */
+    public Users getUsers() {
+        return this.users;
+    }
 
-  public void setLendedHistorys(LendedHistorys lendedHistorys) {
-    this.lendedHistorys = lendedHistorys;
-  }
+    /**
+     * lendedHistorysに値を挿入する為のsetterメソッド。
+     *
+     * @param lendedHistorys
+     */
+    public void setLendedHistorys(LendedHistorys lendedHistorys) {
+        this.lendedHistorys = lendedHistorys;
+    }
 
-  public void setUsers(Users users) {
-    this.users = users;
-  }
+    /**
+     * usersに値を挿入する為のsetterメソッド。
+     *
+     * @param users
+     */
+    public void setUsers(Users users) {
+        this.users = users;
+    }
 }

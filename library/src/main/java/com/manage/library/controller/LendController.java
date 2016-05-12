@@ -1,5 +1,9 @@
+/**
+ *  コントローラクラスのパッケージ。
+ */
 package com.manage.library.controller;
 
+//必要なライブラリをインポート。
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,42 +20,56 @@ import com.manage.library.Users;
 import com.manage.library.dao.BooksDao;
 import com.manage.library.dao.UsersDao;
 
-// 図書貸出画面のコントローラ。
+/**
+ * 図書貸出画面のコントローラクラス。
+ */
 @Controller
 public class LendController {
 
-  // dbからデータを得るDaoを用意する。
-  @Autowired
-  private BooksDao booksDaoView;
-  @Autowired
-  private UsersDao usersDaoView;
+    @Autowired
+    private BooksDao booksDaoView; // dbからbooksテーブルのレコードを持ってくる為のオブジェクト。
+    @Autowired
+    private UsersDao usersDaoView; // dbからusersテーブルのレコードを持ってくる為のオブジェクト。
 
-  // Viewに渡したいオブジェクトを、アノテーションで設定する。
-  @RequestMapping(value = "lend/{bookId}", method = RequestMethod.GET)
-  public String lend(@PathVariable("bookId") int id, Locale locale, Model model) {
+    /**
+     * 図書貸出画面を表示するメソッド。lendへのGETリクエストが来た時に実行される。
+     * 前画面から送られるbookIdによって、表示される内容を変える。
+     *
+     * @return lend 図書貸出画面
+     */
+    @RequestMapping(value = "lend/{bookId}", method = RequestMethod.GET)
+    public String lend(@PathVariable("bookId") int id, Locale locale, Model model) {
 
-    // Viewに渡すテーブルデータを用意する。
-    Books lendBookDetailRecord = booksDaoView.findFromBookId(id);
-    model.addAttribute("lendBookDetail", lendBookDetailRecord);
+        // 貸出画面の表示に必要なデータを得る為、dbのbooksテーブルから、idに対応するレコードを取得する。
+        Books lendBookDetailRecord = booksDaoView.findFromBookId(id);
+        // 取得したデータを画面に表示する為、lendBookDetailという名前でmodelに設定する。
+        model.addAttribute("lendBookDetail", lendBookDetailRecord);
 
-    List<Users> UsersList = usersDaoView.findAll();
-    model.addAttribute("users", UsersList);
-    
-    String ownerUserName = usersDaoView.findUserNameFromUserId(lendBookDetailRecord.getOwnerUserId());
-    model.addAttribute("ownerUserName", ownerUserName);
+        // 貸出画面の表示に必要なデータを得る為、dbのusersテーブルからデータを全て取得する。
+        List<Users> UsersList = usersDaoView.findAll();
+        // 取得したデータを画面に表示する為、usersという名前でmodelに設定する。
+        model.addAttribute("users", UsersList);
 
-    // 貸出画面に表示する為、現在の日付(貸出日)と7日後の日付(返却予定日のデフォルト値)を取得する。
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-    Calendar lendDate = Calendar.getInstance();
-    Calendar dueDate = Calendar.getInstance();
-    dueDate.add(Calendar.DAY_OF_MONTH, 7);
+        // 貸出画面の表示に必要なデータを得る為、dbのusersテーブルから、
+        // 本所有者のidに対応するユーザ名を取得する。
+        String ownerUserName = usersDaoView.findUserNameFromUserId(lendBookDetailRecord.getOwnerUserId());
+        // 取得したデータを画面に表示する為、ownerUserNameという名前でmodelに設定する。
+        model.addAttribute("ownerUserName", ownerUserName);
 
-    model.addAttribute("lendDate", df.format(lendDate.getTime()));
-    model.addAttribute("dueDate", df.format(dueDate.getTime()));
+        // 日付のフォーマット。
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        // 現在の日付を取得する為のオブジェクト。
+        Calendar lendDate = Calendar.getInstance();
+        // 返却予定日のデフォルト値として、7日後の日付を取得する為のオブジェクト。
+        Calendar dueDate = Calendar.getInstance();
+        // 7日加える。
+        dueDate.add(Calendar.DAY_OF_MONTH, 7);
+        // 現在日付をフォーマットで変換したものを、lendDateという名前でmodelに設定する。
+        model.addAttribute("lendDate", df.format(lendDate.getTime()));
+        // 7日後の日付をフォーマットで変換したものを、dueDateという名前でmodelに設定する。
+        model.addAttribute("dueDate", df.format(dueDate.getTime()));
 
-    // view名を返却する。
-    // web.xmlの【value="/WEB-INF/views/】により、
-    // WEB-INF/views/lend.jspがレンダリングされる。
-    return "lend";
-  }
+        // lend.jspが表示される。
+        return "lend";
+    }
 }
