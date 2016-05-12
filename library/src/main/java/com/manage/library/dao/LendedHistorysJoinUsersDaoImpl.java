@@ -34,7 +34,7 @@ public class LendedHistorysJoinUsersDaoImpl extends JdbcDaoSupport implements Le
     }
 
     /**
-     * 結合したテーブルから、対応するidのレコードをを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+     * 結合したテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
      *
      * @param id
      * @return lended_history,usersを結合したテーブルの、idに対応するレコード
