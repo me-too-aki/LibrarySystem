@@ -31,7 +31,7 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao {
     }
 
     /**
-     * usersテーブルから、対応するidのレコードを取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
+     * usersテーブルから、対応するidのユーザ名を取得するメソッド。 継承した抽象メソッドをオーバーライドしている。
      *
      * @return userIdに対応するユーザ名
      */
